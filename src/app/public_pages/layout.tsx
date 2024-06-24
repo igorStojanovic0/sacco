@@ -8,7 +8,7 @@ type Props = {
   showHero?: boolean;
 }
 
-const HomeLayout: React.FC<Props> = ({ children, showHero = false }) => {
+const PublicHomeLayout: React.FC<Props> = ({ children, showHero = false }) => {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <Header />
@@ -21,4 +21,4 @@ const HomeLayout: React.FC<Props> = ({ children, showHero = false }) => {
   );
 };
 
-export default HomeLayout;
+export default PublicHomeLayout;
