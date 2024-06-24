@@ -8,7 +8,7 @@ type Props = {
   showHero?: boolean;
 }
 
-const HomeLayout = ({ children, showHero }: Props) => {
+export default function HomeLayout ({ children, showHero }: Props) {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <Header />
@@ -20,5 +20,3 @@ const HomeLayout = ({ children, showHero }: Props) => {
     </div>
   )
 }
-
-export default HomeLayout
