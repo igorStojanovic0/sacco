@@ -1,18 +1,20 @@
 import Footer from "@/components/sections/Footer";
 import Header from "@/components/sections/Header";
-import Hero from "@/components/sections/Hero";
 import React from "react";
 
 type Props = {
   children: React.ReactNode;
-  showHero?: boolean;
 }
 
-const PublicHomeLayout: React.FC<Props> = ({ children, showHero = false }) => {
+export default function PublicHomeLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <Header />
-      {showHero && <Hero />}
+      {/* {showHero && <Hero />} */}
       <div className="fullWidth md:container mx-auto flex-1 py-10">
         {children}
       </div>
@@ -20,5 +22,3 @@ const PublicHomeLayout: React.FC<Props> = ({ children, showHero = false }) => {
     </div>
   );
 };
-
-export default PublicHomeLayout;
