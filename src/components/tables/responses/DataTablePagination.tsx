@@ -1,19 +1,19 @@
 import {
-    ChevronLeftIcon,
-    ChevronRightIcon,
-    DoubleArrowLeftIcon,
-    DoubleArrowRightIcon,
-  } from "@radix-ui/react-icons"
-  import { Table } from "@tanstack/react-table"
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  DoubleArrowLeftIcon,
+  DoubleArrowRightIcon,
+} from "@radix-ui/react-icons"
+import { Table } from "@tanstack/react-table"
   
   import { Button } from "@/components/ui/button"
-  import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-  } from "@/components/ui/select"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
   
   interface DataTablePaginationProps<TData> {
     table: Table<TData>
@@ -33,7 +33,7 @@ import {
             <p className="text-sm font-medium">Rows per page</p>
             <Select
               value={`${table.getState().pagination.pageSize}`}
-              onValueChange={(value) => {
+              onValueChange={(value: any) => {
                 table.setPageSize(Number(value))
               }}
             >
