@@ -1,9 +1,9 @@
-import { Application } from "@/types"
+import { Checkbox } from "@/components/ui/checkbox";
+import { Application } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
-import { Checkbox } from "@/components/ui/checkbox";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -11,7 +11,7 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import { DataTableColumnHeader } from "./DataTableColumnHeader";
 
 export const columns: ColumnDef<Application>[] = [
@@ -121,7 +121,7 @@ export const columns: ColumnDef<Application>[] = [
                             Copy payment ID
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>View teacher</DropdownMenuItem>
+                        <DropdownMenuItem>View user</DropdownMenuItem>
                         <DropdownMenuItem>
                             <a href={`/account/application/${application._id}`}>View payment details</a>
                         </DropdownMenuItem>

@@ -1,7 +1,7 @@
 export type Response = {
     _id: string;
     loanId: string;
-    nameOfTeacher: string;
+    nameOfUser: string;
     phone: string;
     email: string;
     loanStatus: "Pending" | "Update required" | "Approved" | "Rejected";
@@ -15,7 +15,7 @@ export const listOfResponses: Response[] = [
     {
         _id: "asdfa43j0sa8dfj0j304j34rasefr",
         loanId: "asdfa43j0sa8dfj0j304j32323d43fdsaf",
-        nameOfTeacher: "Jane Doe",
+        nameOfUser: "Jane Doe",
         phone: "0712345678",
         email: "john.doe@example.com",
         loanStatus: "Pending",
@@ -26,7 +26,7 @@ export const listOfResponses: Response[] = [
     {
         _id: "asdfa43j0sa8dfj0j304j34rasefr",
         loanId: "asdfa43j0sa8dfj0j304j32323d43fdsaf",
-        nameOfTeacher: "Jane Doe",
+        nameOfUser: "Jane Doe",
         phone: "0712345678",
         email: "john.doe@example.com",
         loanStatus: "Pending",

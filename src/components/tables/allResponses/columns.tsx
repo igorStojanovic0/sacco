@@ -1,9 +1,9 @@
-import { Response } from "@/types"
+import { Response } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 // import { Checkbox } from "@/components/ui/checkbox";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -11,7 +11,7 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import { DataTableColumnHeader } from "./DataTableColumnHeader";
 
 export const columns: ColumnDef<Response>[] = [
@@ -44,8 +44,8 @@ export const columns: ColumnDef<Response>[] = [
         )
     },
     {
-        accessorKey: "nameOfTeacher",
-        header: "Teacher",
+        accessorKey: "nameOfUser",
+        header: "User",
     },
     // {
     //     accessorKey: "email",

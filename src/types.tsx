@@ -37,7 +37,7 @@ export type Application = {
     lastName: string;
     nationalId: string;
     email: string;
-    teacherId: string;
+    userId: string;
     phone: string;
     dateOfBirth: Date;
     gender: "Male" | "Female" | "Other";
@@ -61,7 +61,7 @@ export type CreateApplicationTypes = {
     lastName: string;
     nationalId: string;
     email: string;
-    teacherId: string;
+    userId: string;
     phone: string;
     dateOfBirth: Date;
     gender: "Male" | "Female" | "Other";
@@ -84,7 +84,7 @@ export type UpdateApplicationTypes = {
     lastName: string;
     nationalId: string;
     email: string;
-    teacherId: string;
+    userId: string;
     phone: string;
     dateOfBirth: Date;
     gender: "Male" | "Female" | "Other";

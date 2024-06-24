@@ -23,7 +23,7 @@ const formSchema =  z.object({
     email: z.string({
         required_error: "Email address is required"
     }).email('Invalid email format').trim(),
-    teacherId: z.string().trim(),
+    userId: z.string().trim(),
     phone: z.string().trim().min(10, 'Phone number must be 10 digits long'),
     dateOfBirth: z.date({
         required_error: "Date of birth is required"
@@ -320,7 +320,7 @@ const UpdateApplicationForm = ({ onSave, isLoading, currentApplication }: Props)
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        <SelectItem value="Teacher">Teacher</SelectItem>
+                                        <SelectItem value="User">User</SelectItem>
                                         <SelectItem value="School Director">School Director</SelectItem>
                                         <SelectItem value="Other">Other</SelectItem>
                                     </SelectContent>

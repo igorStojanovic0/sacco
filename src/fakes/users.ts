@@ -5,7 +5,7 @@ export type User = {
     email: string;
     phone: string;
     verified: boolean;
-    role: "Teacher" | "Manager" | "Admin";
+    role: "User" | "Manager" | "Admin";
 };
 
 export const listOfManager: User[] = [
@@ -39,7 +39,7 @@ export const listOfManager: User[] = [
 ];
 
 
-export const listOfTeachers: User[] = [
+export const listOfUsers: User[] = [
     {
         _id: "asdfa43j0sa8dfj0j304j34rasefr",
         firstName: "John",

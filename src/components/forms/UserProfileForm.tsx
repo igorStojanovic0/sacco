@@ -98,7 +98,124 @@ const UserProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
                             </FormItem>
                         )}
                     />
+
+                    <FormField
+                        control={form.control}
+                        name='phone'
+                        render={({ field }) => (
+                            <FormItem className='w-[31%]'>
+                                <FormLabel>Birhday</FormLabel>
+                                <FormControl>
+                                    <Input {...field} className='bg-white' />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
+                    <FormField
+                        control={form.control}
+                        name='phone'
+                        render={({ field }) => (
+                            <FormItem className='w-[31%]'>
+                                <FormLabel>Home Address</FormLabel>
+                                <FormControl>
+                                    <Input {...field} className='bg-white' />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
                 </div>
+
+                <div className='flex flex-wrap w-full justify-between items-start gap-3'>
+                    <FormField
+                        control={form.control}
+                        name='phone'
+                        render={({ field }) => (
+                            <FormItem className='w-[31%]'>
+                                <FormLabel>Office Address</FormLabel>
+                                <FormControl>
+                                    <Input {...field} className='bg-white' />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
+                    <FormField
+                        control={form.control}
+                        name='phone'
+                        render={({ field }) => (
+                            <FormItem className='w-[31%]'>
+                                <FormLabel>Primary Interest</FormLabel>
+                                <FormControl>
+                                    <Input {...field} className='bg-white' />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
+                    <FormField
+                        control={form.control}
+                        name='phone'
+                        render={({ field }) => (
+                            <FormItem className='w-[31%]'>
+                                <FormLabel>Current Challenges</FormLabel>
+                                <FormControl>
+                                    <Input {...field} className='bg-white' />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                </div>
+
+                <div className='flex flex-wrap w-full justify-between items-start gap-3'>
+                    <FormField
+                        control={form.control}
+                        name='phone'
+                        render={({ field }) => (
+                            <FormItem className='w-[31%]'>
+                                <FormLabel>Preferred Date</FormLabel>
+                                <FormControl>
+                                    <Input {...field} className='bg-white' />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
+                    <FormField
+                        control={form.control}
+                        name='phone'
+                        render={({ field }) => (
+                            <FormItem className='w-[31%]'>
+                                <FormLabel>Joined Group</FormLabel>
+                                <FormControl>
+                                    <Input {...field} className='bg-white' />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
+                    <FormField
+                        control={form.control}
+                        name='phone'
+                        render={({ field }) => (
+                            <FormItem className='w-[31%]'>
+                                <FormLabel>Role</FormLabel>
+                                <FormControl>
+                                    <Input {...field} className='bg-white' />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                </div>
+                
 
                 {isLoading ? <LoadingButton /> : <Button type='submit' className='bg-orange-500'>Submit</Button>}
             </form>

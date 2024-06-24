@@ -20,7 +20,7 @@ const SignUp = () => {
     // Transform the data to include the 'role' property
     const userData: CreateUserTypes = {
       ...values,
-      role: "Teacher" // or any default role you want to assign
+      role: "User" // or any default role you want to assign
     };
     signUp(userData);
   };

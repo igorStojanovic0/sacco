@@ -12,7 +12,7 @@ const stats = [
         icon: "UserCog"
     },
     {
-        title: "Teachers",
+        title: "Users",
         number: 45,
         icon: "PersonStanding"
     }

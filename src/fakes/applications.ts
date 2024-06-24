@@ -4,7 +4,7 @@ export type Application = {
     lastName: string;
     nationalId: string;
     email: string;
-    teacherId: string;
+    userId: string;
     phone: string;
     dateOfBirth: Date;
     gender: "Male" | "Female" | "Other";
@@ -82,14 +82,14 @@ function getRandomDateWithinLast30Days() {
     lastName: getRandomItem(['Doe', 'Smith', 'Johnson', 'Brown', 'Williams', 'Jones']),
     nationalId: getRandomNationalId(),
     email: getRandomEmail(),
-    teacherId: `T${getRandomNumber(1000, 9999)}`,
+    userId: `T${getRandomNumber(1000, 9999)}`,
     phone: getRandomPhoneNumber(),
     dateOfBirth: new Date(getRandomNumber(1970, 2000), getRandomNumber(0, 11), getRandomNumber(1, 28)),
     gender: getRandomItem(genders),
     maritalStatus: getRandomItem(maritalStatuses),
     numberOfDependencies: getRandomNumber(0, 5),
     workSchool: getRandomItem(['Greenwood High', 'Lakeside Academy', 'Riverside School', 'Sunnyvale Institute']),
-    position: getRandomItem(['Math Teacher', 'Science Teacher', 'English Teacher', 'History Teacher']),
+    position: getRandomItem(['Math User', 'Science User', 'English User', 'History User']),
     monthlySalary: getRandomNumber(300000, 600000),
     amountRequested: getRandomNumber(5000000, 20000000),
     amountToPayPerMonth: getRandomNumber(100000, 500000),

@@ -1,4 +1,4 @@
-import StatCard from "../StatCard"
+import StatCard from "../StatCard";
 
 const stats = [
     {
@@ -7,7 +7,7 @@ const stats = [
         icon: "FileText"
     },
     {
-        title: "Teachers",
+        title: "Users",
         number: 40,
         icon: "UsersIcon"
     },
