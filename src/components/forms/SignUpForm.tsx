@@ -33,7 +33,7 @@ const SignUpForm = ({ onSignUp, isLoading }: Props) => {
       lastName: '',
       email: '',
       password: '',
-      phone: ''
+      phone: '',
     }
   });
 
