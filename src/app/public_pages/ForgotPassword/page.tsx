@@ -1,5 +1,4 @@
 import { useForgotPassword } from "@/api/auth";
-import HelmetComponent from "@/components/HelmetComponent";
 import ForgotPasswordForm from "@/components/forms/ForgotPasswordForm";
 
 const ForgotPassword = () => {
@@ -11,10 +10,10 @@ const ForgotPassword = () => {
 
   return (
     <div className="flex w-full flex-wrap items-center justify-center">
-      <HelmetComponent title="Forgot Password" />
+      {/* <HelmetComponent title="Forgot Password" /> */}
 
       <div className="flex mx-auto w-full md:w-1/2">
-        <img src="/Business innovation based on alternative financial services-small.png" alt="" />
+        <img src="/assets/progress3.png" alt="forgot password" />
       </div>
       <div className="flex flex-col mx-auto w-full md:w-1/2">
         <h1 className="text-3xl text-center md:text-start my-3 font-bold">Forgot your password?</h1>
