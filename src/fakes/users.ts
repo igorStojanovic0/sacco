@@ -1,7 +1,7 @@
 export type User = {
     _id: string;
-    firstName: string;
-    lastName: string;
+    surName: string;
+    givenName: string;
     email: string;
     phone: string;
     verified: boolean;
@@ -11,8 +11,8 @@ export type User = {
 export const listOfManager: User[] = [
     {
         _id: "asdfa43j0sa8dfj0j304j34rasefr",
-        firstName: "John",
-        lastName: "Doe",
+        surName: "John",
+        givenName: "Doe",
         email: "john.doe@example.com",
         phone: "0712345678",
         role: "Manager",
@@ -20,8 +20,8 @@ export const listOfManager: User[] = [
     },
     {
         _id: "323masodifj904joisdjafoasdjfjoi",
-        firstName: "Jane",
-        lastName: "Doe",
+        surName: "Jane",
+        givenName: "Doe",
         email: "jane.doe@example.com",
         phone: "0712345678",
         role: "Manager",
@@ -29,8 +29,8 @@ export const listOfManager: User[] = [
     },
     {
         _id: "40jd0ajsdf0-9ajsdfjasodfjasodfja",
-        firstName: "Eric",
-        lastName: "Owen",
+        surName: "Eric",
+        givenName: "Owen",
         email: "eric.owen@example.com",
         phone: "0712345678",
         role: "Manager",
@@ -42,8 +42,8 @@ export const listOfManager: User[] = [
 export const listOfUsers: User[] = [
     {
         _id: "asdfa43j0sa8dfj0j304j34rasefr",
-        firstName: "John",
-        lastName: "Doe",
+        surName: "John",
+        givenName: "Doe",
         email: "john.doe@example.com",
         phone: "0712345678",
         role: "Manager",
@@ -51,8 +51,8 @@ export const listOfUsers: User[] = [
     },
     {
         _id: "323masodifj904joisdjafoasdjfjoi",
-        firstName: "Jane",
-        lastName: "Doe",
+        surName: "Jane",
+        givenName: "Doe",
         email: "jane.doe@example.com",
         phone: "0712345678",
         role: "Manager",
@@ -60,8 +60,8 @@ export const listOfUsers: User[] = [
     },
     {
         _id: "40jd0ajsdf0-9ajsdfjasodfjasodfja",
-        firstName: "Eric",
-        lastName: "Owen",
+        surName: "Eric",
+        givenName: "Owen",
         email: "eric.owen@example.com",
         phone: "0712345678",
         role: "Manager",

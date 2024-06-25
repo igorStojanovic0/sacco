@@ -1,17 +1,17 @@
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { useEffect } from 'react';
-import LoadingButton from '../LoadingButton';
 import { User } from '@/types';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import LoadingButton from '../LoadingButton';
 
 const formSchema = z.object({
     email: z.string().optional(),
-    firstName: z.string().min(1, "First name is required"),
-    lastName: z.string().min(1, "Last name is required"),
+    surName: z.string().min(1, "First name is required"),
+    givenName: z.string().min(1, "Last name is required"),
     phone: z.string().min(10, "Phone number is required")
 });
 
@@ -56,7 +56,7 @@ const ManagerProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
 
                     <FormField
                         control={form.control}
-                        name='firstName'
+                        name='surName'
                         render={({ field }) => (
                             <FormItem className='w-[49%]'>
                                 <FormLabel>First Name</FormLabel>
@@ -72,7 +72,7 @@ const ManagerProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
                 <div className='flex justify-between items-center flex-wrap'>
                     <FormField
                         control={form.control}
-                        name='lastName'
+                        name='givenName'
                         render={({ field }) => (
                             <FormItem className='w-[49%]'>
                                 <FormLabel>Last Name</FormLabel>

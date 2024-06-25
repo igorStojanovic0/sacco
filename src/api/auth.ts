@@ -40,6 +40,8 @@ export const useSignUp = () => {
 
 export const useSignIn = () => {
     const SignInRequest = async (user: SignInTypes) => {
+        console.log('userSignIn', JSON.stringify(user));
+        
         const response = await fetch(`${API_BASE_URL}/api/v1/auth/signin`, {
             method: 'POST',
             headers: {
@@ -228,6 +230,8 @@ export const useGetProfileData = () => {
 
 export const useUpdateUserAccount = () => {
     const updateUserAccountRequest = async (user: UpdateUserTypes) => {
+        console.log("total profile", user);
+        
         const accessToken = Cookies.get('access-token');
         const response = await fetch(`${API_BASE_URL}/api/v1/auth/update`, {
             method: 'PUT',

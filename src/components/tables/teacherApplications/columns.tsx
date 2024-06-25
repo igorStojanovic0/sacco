@@ -1,16 +1,16 @@
-import { User } from "@/types"
+import { Checkbox } from "@/components/ui/checkbox";
+import { User } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
-import { Checkbox } from "@/components/ui/checkbox";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuLabel,
     DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import { DataTableColumnHeader } from "./DataTableColumnHeader";
 
 export const columns: ColumnDef<User>[] = [
@@ -43,11 +43,11 @@ export const columns: ColumnDef<User>[] = [
         )
     },
     {
-        accessorKey: "firstName",
+        accessorKey: "surName",
         header: "First Name",
     },
     {
-        accessorKey: "lastName",
+        accessorKey: "givenName",
         header: "Last Name",
     },
     {

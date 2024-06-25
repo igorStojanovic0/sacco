@@ -9,13 +9,13 @@ type User = {
     name: string;
     email: string;
     phone: string;
-    firstName: string;
-    lastName: string;
+    surName: string;
+    givenName: string;
     role: string;
 }
 
 type Application = {
-    firstName: string;
+    surName: string;
 };
 
 type ContextData = {
@@ -33,8 +33,8 @@ const StoreContext = ({ children }: Props) => {
         name: "",
         email: "",
         phone: "",
-        firstName: "",
-        lastName: "",
+        surName: "",
+        givenName: "",
         role: "",
     });
 

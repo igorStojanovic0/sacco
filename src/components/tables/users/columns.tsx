@@ -44,11 +44,11 @@ export const columns: ColumnDef<User>[] = [
         )
     },
     {
-        accessorKey: "firstName",
+        accessorKey: "surName",
         header: "First Name",
     },
     {
-        accessorKey: "lastName",
+        accessorKey: "givenName",
         header: "Last Name",
     },
     {

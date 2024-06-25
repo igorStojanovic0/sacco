@@ -14,10 +14,10 @@ import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 
 const formSchema = z.object({
-    firstName: z.string({
-        required_error: "FirstName is required"
+    surName: z.string({
+        required_error: "surName is required"
     }).trim().min(1, 'First name is required').max(255, 'First name is too long'),
-    lastName: z.string().trim().min(1, 'Last name is required').max(255, 'Last name is too long'),
+    givenName: z.string().trim().min(1, 'Last name is required').max(255, 'Last name is too long'),
     nationalId: z.string().trim().min(16, 'National ID must be 16 characters long').max(16, 'National ID must be 16 characters long'),
     email: z.string({
         required_error: "Email address is required"
@@ -65,8 +65,8 @@ const AddApplicationForm = ({ onSave, isLoading }: Props) => {
     const form = useForm<ApplicationFormData>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            firstName: '',
-            lastName: '',
+            surName: '',
+            givenName: '',
             nationalId: '',
             email: '',
             userId: '',
@@ -97,7 +97,7 @@ const AddApplicationForm = ({ onSave, isLoading }: Props) => {
                 <div className='flex flex-wrap w-full justify-between items-start gap-3'>
                     <FormField
                         control={form.control}
-                        name='firstName'
+                        name='surName'
                         render={({ field }) => (
                             <FormItem className='w-full sm:w-[49%] md:w-[31%]'>
                                 <FormLabel>First Name</FormLabel>
@@ -111,7 +111,7 @@ const AddApplicationForm = ({ onSave, isLoading }: Props) => {
 
                     <FormField
                         control={form.control}
-                        name='lastName'
+                        name='givenName'
                         render={({ field }) => (
                             <FormItem className='w-full sm:w-[49%] md:w-[31%]'>
                                 <FormLabel>Last Name</FormLabel>

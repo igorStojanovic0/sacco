@@ -1,16 +1,16 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
-import { Input } from '../ui/input';
+import LoadingButton from '../LoadingButton';
 import { Button } from '../ui/button';
 import { Checkbox } from '../ui/checkbox';
-import { useState } from 'react';
-import LoadingButton from '../LoadingButton';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
+import { Input } from '../ui/input';
 
 const formSchema = z.object({
-  firstName: z.string().min(2).max(50),
-  lastName: z.string().min(2).max(50),
+  surName: z.string().min(2).max(50),
+  givenName: z.string().min(2).max(50),
   phone: z.string().min(10).max(10),
   email: z.string().email('Invalid email'),
   password: z.string().min(2, 'Too short'),
@@ -30,8 +30,8 @@ const AdminSignUpForm = ({ onSignUp, isLoading }: Props) => {
   const form = useForm<SignUpFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      firstName: '',
-      lastName: '',
+      surName: '',
+      givenName: '',
       email: '',
       password: '',
       phone: '',
@@ -45,7 +45,7 @@ const AdminSignUpForm = ({ onSignUp, isLoading }: Props) => {
         <div className='flex w-full flex-wrap justify-between'>
           <FormField 
             control={form.control}
-            name='firstName'
+            name='surName'
             render={({ field }) => (
               <FormItem className='w-full md:w-[49%]'>
                 <FormLabel>First name</FormLabel>
@@ -58,7 +58,7 @@ const AdminSignUpForm = ({ onSignUp, isLoading }: Props) => {
           />
           <FormField
             control={form.control}
-            name='lastName'
+            name='givenName'
             render={({ field }) => (
               <FormItem className='w-full md:w-[49%]'>
                 <FormLabel>Last name</FormLabel>

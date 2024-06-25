@@ -1,15 +1,15 @@
+import { generateRandomPassword } from '@/utils/generateRandomPassword';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import LoadingButton from '../LoadingButton';
+import { Button } from '../ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
 import { Input } from '../ui/input';
-import { Button } from '../ui/button';
-import LoadingButton from '../LoadingButton';
-import { generateRandomPassword } from '@/utils/generateRandomPassword';
 
 const formSchema = z.object({
-  firstName: z.string().min(2).max(50),
-  lastName: z.string().min(2).max(50),
+  surName: z.string().min(2).max(50),
+  givenName: z.string().min(2).max(50),
   phone: z.string().min(10).max(10),
   email: z.string().email('Invalid email'),
   password: z.string().min(2, 'Too short'),
@@ -29,8 +29,8 @@ const AddManagerForm = ({ onSignUp, isLoading }: Props) => {
   const form = useForm<SignUpFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      firstName: '',
-      lastName: '',
+      surName: '',
+      givenName: '',
       email: '',
       password: generateRandomPassword(),
       phone: '',
@@ -46,7 +46,7 @@ const AddManagerForm = ({ onSignUp, isLoading }: Props) => {
         <div className='flex w-full flex-wrap justify-between'>
           <FormField
             control={form.control}
-            name='firstName'
+            name='surName'
             render={({ field }) => (
               <FormItem className='w-full md:w-[49%]'>
                 <FormLabel>First name</FormLabel>
@@ -59,7 +59,7 @@ const AddManagerForm = ({ onSignUp, isLoading }: Props) => {
           />
           <FormField
             control={form.control}
-            name='lastName'
+            name='givenName'
             render={({ field }) => (
               <FormItem className='w-full md:w-[49%]'>
                 <FormLabel>Last name</FormLabel>

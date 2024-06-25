@@ -1,3 +1,4 @@
+"use client"
 import { LogOut, Mail, Menu, Users } from "lucide-react"
 import Link from "next/link"
 import React, { useState } from "react"
@@ -118,7 +119,11 @@ const ManagerDashBoardSideMenuBar = () => {
                                     General
                                 </Link>
                             </li>
-
+                            <li>
+                                <Link href="/manager_pages/Role" className="block rounded-lg px-4 py-2 text-sm font-medium text-slate-200 hover:bg-gray-100 hover:text-gray-700">
+                                    Role
+                                </Link>
+                            </li>
                             <li>
                                 <Link href="/manager/loans" className="block rounded-lg px-4 py-2 text-sm font-medium text-slate-200 hover:bg-gray-100 hover:text-gray-700">
                                     Loans

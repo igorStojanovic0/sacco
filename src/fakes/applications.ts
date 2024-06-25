@@ -1,7 +1,7 @@
 export type Application = {
     _id: string;
-    firstName: string;   
-    lastName: string;
+    surName: string;   
+    givenName: string;
     nationalId: string;
     email: string;
     userId: string;
@@ -78,8 +78,8 @@ function getRandomDateWithinLast30Days() {
   
   export const applications = Array.from({ length: 13 }, (_, index) => ({
     _id: (index + 1).toString(),
-    firstName: getRandomItem(['John', 'Jane', 'Alex', 'Emily', 'Chris', 'Pat']),
-    lastName: getRandomItem(['Doe', 'Smith', 'Johnson', 'Brown', 'Williams', 'Jones']),
+    surName: getRandomItem(['John', 'Jane', 'Alex', 'Emily', 'Chris', 'Pat']),
+    givenName: getRandomItem(['Doe', 'Smith', 'Johnson', 'Brown', 'Williams', 'Jones']),
     nationalId: getRandomNationalId(),
     email: getRandomEmail(),
     userId: `T${getRandomNumber(1000, 9999)}`,
