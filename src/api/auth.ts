@@ -4,15 +4,17 @@ import { useMutation, useQuery } from 'react-query';
 import { toast } from 'sonner';
 
 // const API_BASE_URL = process.env.VITE_API_BASE_URL;
-const API_BASE_URL = 'http://localhost:3001';
 const environment = process.env. VITE_ENVIRONMENT;
 
 export const useSignUp = () => {
+    const accessToken = Cookies.get("reset-token");
+
     const SignUpRequest = async (user: CreateUserTypes) => {
-        const response = await fetch(`${API_BASE_URL}/api/v1/auth/signup`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/signup`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
             },
             body: JSON.stringify(user),
         });
@@ -42,7 +44,7 @@ export const useSignIn = () => {
     const SignInRequest = async (user: SignInTypes) => {
         console.log('userSignIn', JSON.stringify(user));
         
-        const response = await fetch(`${API_BASE_URL}/api/v1/auth/signin`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/signin`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -54,12 +56,13 @@ export const useSignIn = () => {
 
         if (!response.ok) {
             throw new Error(responseData.message);
+
         }
-        
         Cookies.set('access-token', responseData.token, {
             secure: environment === "production" ? true : false,
             expires: 1/24
         });
+        
 
         
     };
@@ -80,7 +83,7 @@ export const useSignIn = () => {
 
 export const useForgotPassword = () => {
     const ForgotPasswordRequest = async (user: { email: string }) => {
-        const response = await fetch(`${API_BASE_URL}/api/v1/auth/forgotPassword`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/forgotPassword`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -113,7 +116,7 @@ export const useResetPassword = () => {
     const accessToken = Cookies.get("reset-token");
 
     const ResetPasswordRequest = async (user: { password: string }) => {
-        const response = await fetch(`${API_BASE_URL}/api/v1/auth/resetPassword`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/resetPassword`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -145,7 +148,8 @@ export const useResetPassword = () => {
 
 export const useValidateOTP = () => {
     const SignInRequest = async (data: OPTTypes) => {
-        const response = await fetch(`${API_BASE_URL}/api/v1/auth/verify`, {
+        console.log("opt", data)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/verify`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -176,7 +180,7 @@ export const useValidateOTP = () => {
 
 export const useRegenerateOTP = () => {
     const SignInRequest = async (data: { id: string }) => {
-        const response = await fetch(`${API_BASE_URL}/api/v1/auth/regenerateOtp`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/regenerateOtp`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -208,7 +212,7 @@ export const useRegenerateOTP = () => {
 export const useGetProfileData = () => {
     const accessToken = Cookies.get('access-token');
     const getUserProfileRequest = async (): Promise<User> => {
-        const response = await fetch(`${API_BASE_URL}/api/v1/auth/user`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/user`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
             }
@@ -220,10 +224,13 @@ export const useGetProfileData = () => {
             throw new Error(responseData.message);
         }
 
+        
         return responseData;
     };
 
     const { data: currentUser, isLoading } = useQuery("userInfo", () => getUserProfileRequest());
+
+    window.localStorage.setItem('user', currentUser?._id as string)
 
     return { currentUser, isLoading }
 };
@@ -233,7 +240,7 @@ export const useUpdateUserAccount = () => {
         console.log("total profile", user);
         
         const accessToken = Cookies.get('access-token');
-        const response = await fetch(`${API_BASE_URL}/api/v1/auth/update`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/update`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
@@ -265,4 +272,55 @@ export const useUpdateUserAccount = () => {
         updateAccount,
         isLoading
     }
+};
+
+export const useGetAllUsers = () => {
+    const accessToken = Cookies.get('access-token');
+    const getAllUsersRequest = async (): Promise<User[]> => {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/allUser`, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+            },
+        });
+
+        const responseData = await response.json();
+        
+        const { allUsers } = responseData
+        
+        if (!response.ok) {
+            throw new Error(responseData.message);
+        }
+
+        return allUsers;
+    };
+
+    const { data: allUsers, isLoading } = useQuery("allUsers", () => getAllUsersRequest());
+
+    return { allUsers, isLoading }
+};
+
+export const useGetGroupUserList = (groupId: string) => {
+    const accessToken = Cookies.get('access-token');
+    
+    const getGroupUserList = async (groupId: string) => {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/findByGroupId?groupId=${groupId}`, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+            }
+        });
+
+        const responseData = await response.json();
+        
+        if (!response.ok) {
+            throw new Error(responseData.message);
+        }
+
+        const { groupUserList} = responseData
+
+        return groupUserList;
+    };
+
+    const { data: groupUserList, isLoading } = useQuery("groupUserList", () => getGroupUserList(groupId));
+
+    return { groupUserList, isLoading }
 };

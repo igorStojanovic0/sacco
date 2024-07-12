@@ -33,8 +33,11 @@ const PrimaryMenu = () => {
                     <a href={'/'} className="text-[#2f578b]">Features</a>
                     <a href={'/'} className="text-[#2f578b]">Book Demo</a>
                     <a href={'/#process'} className="text-[#2f578b]">Process</a>
-                    <a href={'/#benefits'} className="text-[#2f578b]">Group</a>
-                    <a href={'/apply'} className=" text-[#2f578b]">Get Started</a>
+                    {
+                        userInfo?._id && (
+                            <a href={'/Groups'} className=" text-[#2f578b]">Group</a>
+                        )
+                    }
                 </span>
             </div>
 
@@ -44,7 +47,7 @@ const PrimaryMenu = () => {
                     <Popover>
                         <PopoverTrigger className="flex items-center gap-2">
                             <Avatar>
-                                <AvatarImage src="/assets/avatar.svg" className="bg-black"/>
+                                <AvatarImage src="/assets/avatar.svg" className="bg-black" />
                                 <AvatarFallback>{iconTextGenerator(userInfo.surName, userInfo.givenName)}</AvatarFallback>
                             </Avatar>
                             <p className="text-[#2f578b]">{userInfo.surName}</p>
@@ -66,7 +69,7 @@ const PrimaryMenu = () => {
                         </PopoverContent>
                     </Popover>
                     :
-                    <Link href={'/public_pages/SignIn'} className="hidden md:block text-blue-950 px-4 py-2 rounded-xl bg-yellow-500 hover:bg-yellow-400 font-bold">Sign In</Link>
+                    <Link href={'/auth/SignIn'} onClick={() => window.localStorage.setItem('menu', 'SignIn')} className="hidden md:block text-blue-950 px-4 py-2 rounded-xl bg-yellow-500 hover:bg-yellow-400 font-bold">Sign In</Link>
                 }
             </div>
         </>

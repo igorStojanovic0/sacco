@@ -1,9 +1,11 @@
 "use client"
-import StoreContext from "@/context/user";
+import { MyProvider } from "@/context/MyContext";
 import { Inter } from "next/font/google";
 import { HelmetProvider } from 'react-helmet-async';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { Toaster } from 'sonner';
 import "./globals.css";
+
 const inter = Inter({ subsets: ["latin"] });
 
 const helmetContext = {}
@@ -27,17 +29,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <title>Welcome to Twezimbe</title>
-      <body className={inter.className}>
-        <StoreContext>
+      <body >
+        <Toaster visibleToasts={1} position='top-right' richColors />
+
+        <MyProvider>
           <QueryClientProvider client={queryClient} >
             <HelmetProvider context={helmetContext}>
-              {children}
+                  {children}
             </HelmetProvider>
           </QueryClientProvider>
-        </StoreContext>
+        </MyProvider>
       </body>
     </html>
   );

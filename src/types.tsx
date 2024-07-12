@@ -4,31 +4,31 @@ export type User = {
     surName: string;
     givenName: string;
     otherNames?: string;
-    photograph?: File | null; // assuming it's a file upload
-    gender?: string;
-    tribe?: string;
-    religion?: string;
-    placeOfBirth?: string;
-    currentParish?: string;
-    birthday: string;
+    photograph?: string; // assuming it's a file upload
+    gender: "Male" | "Female" | "Other";
+    tribe: string;
+    religion: string;
+    placeOfBirth: string;
+    currentParish: string;
+    birthday: Date;
     nationalIDNumber: string;
-    nationalIDPhoto?: File | null; // assuming it's a file upload
+    nationalIDPhoto?: string; // assuming it's a file upload
     phone: string;
     email: string;
-    homeAddress?: string;
-    homeLocation?: string;
-    districtOfBirth?: string;
-    birthParish?: string;
-    birthVillage?: string;
-    birthHome?: string;
+    homeAddress: string;
+    homeLocation: string;
+    districtOfBirth: string;
+    birthParish: string;
+    birthVillage: string;
+    birthHome: string;
     maritalStatus?: string;
-    profession?: string;
-    jobTitle?: string;
-    nextOfKin?: {
-        nationalID?: string;
-        contactName?: string;
-        contactPhone?: string;
-        contactEmail?: string;
+    profession: string;
+    jobTitle: string;
+    nextOfKin: {
+        nationalID: string;
+        contactName: string;
+        contactPhone: string;
+        contactEmail: string;
     };
     monthlyIncome?: string;
     bankName?: string;
@@ -36,6 +36,7 @@ export type User = {
     registeredMobileAccount?: string;
     registeredEmailWithBank?: string;
     highestEducation?: string;
+    otherEducation?: string;
     employmentStatus?: string;
     placeOfWorkAddress?: string;
     employerDetails?: {
@@ -44,7 +45,7 @@ export type User = {
         sideHustleIncome?: string;
     };
     groupMembership?: {
-        joiningDate?: string;
+        joiningDate: Date;
         recommender?: {
             fullName?: string;
             nationalID?: string;
@@ -54,29 +55,23 @@ export type User = {
     };
     userID?: string;
     notificationPreferences?: string;
-    twoFactorAuth?: boolean;
+    twoFactorAuth: "Enabled" | "Disabled";
     securityQuestions?: {
-        question1?: string;
-        answer1?: string;
-        question2?: string;
-        answer2?: string;
+        question?: string;
+        answer?: string;
     };
     consentAgreements?: boolean;
-    customFields?: any; // assuming it can be any type
+    customFields?: any;
+    is_profileCompleted: boolean;
+    is_active: boolean;
     createdAt: Date;
-};
-
-
-export type CreateRoleTypes = {
-    role_name: string;
-    description: string;
 };
 
 export type CreateUserTypes = {
     email: string;
     surName: string;
     givenName: string;
-    phone: string;
+    phone?: string;
     password: string;
     role: string;
 }
@@ -86,16 +81,16 @@ export type UpdateUserTypes = {
     surName: string;
     givenName: string;
     otherNames?: string;
-    photograph?: File | null; // assuming it's a file upload
-    gender?: string;
+    photograph?: string; // assuming it's a file upload
+    gender: "Male" | "Female" | "Other";
     tribe?: string;
     religion?: string;
     placeOfBirth?: string;
     currentParish?: string;
-    birthday: string;
+    birthday?: Date;
     nationalIDNumber: string;
-    nationalIDPhoto?: File | null; // assuming it's a file upload
-    phone: string;
+    nationalIDPhoto?: string; // assuming it's a file upload
+    phone?: string;
     email: string;
     homeAddress?: string;
     homeLocation?: string;
@@ -118,6 +113,7 @@ export type UpdateUserTypes = {
     registeredMobileAccount?: string;
     registeredEmailWithBank?: string;
     highestEducation?: string;
+    otherEducation?: string;
     employmentStatus?: string;
     placeOfWorkAddress?: string;
     employerDetails?: {
@@ -126,7 +122,7 @@ export type UpdateUserTypes = {
         sideHustleIncome?: string;
     };
     groupMembership?: {
-        joiningDate?: string;
+        joiningDate?: Date;
         recommender?: {
             fullName?: string;
             nationalID?: string;
@@ -135,12 +131,10 @@ export type UpdateUserTypes = {
         };
     };
     notificationPreferences?: string;
-    twoFactorAuth?: boolean;
+    twoFactorAuth: "Enabled" | "Disabled";
     securityQuestions?: {
-        question1?: string;
-        answer1?: string;
-        question2?: string;
-        answer2?: string;
+        question?: string;
+        answer?: string;
     };
     consentAgreements?: boolean;
     customFields?: any; // assuming it can be any type
@@ -154,6 +148,83 @@ export type SignInTypes = {
 export type OPTTypes = {
     otp: string;
 }
+
+
+export type CreateRoleTypes = {
+    role_name: string;
+    description: string;
+};
+
+export type GroupTypes = {
+    _id: string
+    name: string;
+    group_type: string;
+    group_avatar:string;
+    tags: string;
+    description: string;
+    created_by: string;
+    del_flag: number;
+    createdAt: Date;
+    
+};
+
+export type CreateGroupTypes = {
+    name: string;
+    group_type?: string;
+    group_state?: string;
+    selectedUsers_Id?: string[];
+    group_avatar?:string;
+    tags?: string;
+    description?: string;
+    created_by?: string;
+};
+
+export type UpdateGroupTypes = {
+    name: string;
+    group_type?: string;
+    description?: string;
+    created_by?: string;
+};
+
+export type JoinedGroupTypes = {
+    group_id: string;
+    role_name: string;
+    group_name: string;
+    group_type: string;
+    group_state: string;
+    group_avatar: string;
+    description: string;
+    tags: string;
+    created_by: string;
+    del_flag: number;
+    createdAt: Date;
+    updatedAt: Date;
+};
+
+export type JoinGroupTypes = {
+    user_id?: string;
+    groud_id?: string;
+};
+
+
+export type CourseProgressTypes = {
+    currentStep: number;
+    completed: number;
+};
+
+export type CourseTypes = {
+        id: string;
+        title: string;
+        slug: string;
+        description: string;
+        category: string;
+        duration: number;
+        totalSteps: number;
+        updatedAt: string;
+        featured: boolean;
+        progress: CourseProgressTypes
+}
+
 
 export type Application = {
     _id: string;

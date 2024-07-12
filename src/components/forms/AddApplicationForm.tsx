@@ -13,6 +13,8 @@ import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 
+const phoneRegex = /^\+\d{1,3}-\d{3}-\d{6}$/;
+
 const formSchema = z.object({
     surName: z.string({
         required_error: "surName is required"
@@ -23,7 +25,9 @@ const formSchema = z.object({
         required_error: "Email address is required"
     }).email('Invalid email format').trim(),
     userId: z.string().trim(),
-    phone: z.string().trim().min(10, 'Phone number must be 10 digits long'),
+    phone: z.string().optional().refine((val) => val === undefined || val === "" || phoneRegex.test(val), {
+        message: "Phone number must include country code and be formatted correctly"
+    }),
     dateOfBirth: z.date({
         required_error: "Date of birth is required"
     }),
@@ -464,7 +468,7 @@ const AddApplicationForm = ({ onSave, isLoading }: Props) => {
                     />
                 </div>
 
-                {isLoading ? <LoadingButton /> : <Button type='submit' className='bg-orange-500'>Submit</Button>}
+                {isLoading ? <LoadingButton /> : <Button type='submit' className='bg-[rgb(50,86,166)]'>Submit</Button>}
             </form>
         </Form>
     )

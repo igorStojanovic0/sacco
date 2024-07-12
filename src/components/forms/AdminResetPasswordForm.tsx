@@ -51,7 +51,7 @@ const AdminResetPasswordForm = ({ onResetPassword, isLoading }: Props) => {
         </div>
 
 
-        {isLoading ? <LoadingButton /> : <Button type='submit' className='bg-orange-500'>Submit</Button>}
+        {isLoading ? <LoadingButton /> : <Button type='submit' className='bg-[rgb(50,86,166)]'>Submit</Button>}
       </form>
       <div className='mt-5'>
         <a href={'/admin/auth'} className='text-blue-600'>Go back to home</a>

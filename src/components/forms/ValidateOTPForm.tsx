@@ -1,25 +1,17 @@
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-
 import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
-  FormMessage,
+  FormMessage
 } from "@/components/ui/form"
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSeparator,
-  InputOTPSlot,
-} from "@/components/ui/input-otp"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { ShieldBanIcon } from "lucide-react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 import LoadingButton from "../LoadingButton"
-
+import { Input } from "../ui/input"
 const formSchema = z.object({
   otp: z.string().min(6, {
     message: "Your one-time password must be 6 characters.",
@@ -43,8 +35,25 @@ export function ValidateOTPForm({ onValidateOTP, isLoading }: Props) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onValidateOTP)} className="w-2/3 space-y-2">
-        <FormField
+      <form onSubmit={form.handleSubmit(onValidateOTP)} className="space-y-2">
+        <p className="mb-7 text-[14px]">Please enter the 6 digit security code sent to your email address to proceed.</p>
+        <div className='relative'>
+          <FormField
+            control={form.control}
+            name='otp'
+            render={({ field }) => (
+              <FormItem className='w-full'>
+                <FormControl>
+                  <Input placeholder="Security Code" {...field} className="h-14 peer block w-full rounded-md border border-gray-200 py-[12px] pl-10 text-sm outline-2 placeholder:text-gray-500" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <ShieldBanIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-[#1170b2] peer-focus:text-gray-900"/>
+
+        </div>
+        {/* <FormField
           control={form.control}
           name="otp"
           render={({ field }) => (
@@ -71,8 +80,9 @@ export function ValidateOTPForm({ onValidateOTP, isLoading }: Props) {
               <FormMessage />
             </FormItem>
           )}
-        />
-        {isLoading ? <LoadingButton /> : <Button type='submit' className='bg-gray-800 hover:bg-gray-600 text-white'>Submit</Button>}
+        /> */}
+                {isLoading ? <LoadingButton /> : <Button type='submit' className='bg-[#1170b2] hover:bg-gray-600 text-white w-[380px]'>Submit</Button>}
+
       </form>
       {/* <form {...form}>
         <p>Cick on the link to get another code</p>

@@ -8,9 +8,8 @@ const API_BASE_URL = "http://localhost:3001"
 
 export const useSubmitApplication = () => {
     const submitApplicationRequest = async (application: ApplicationFormData) => {
-        console.log(application);
         
-        const response = await fetch(`${API_BASE_URL}/api/v1/application/add`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/application/add`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -42,7 +41,7 @@ export const useGetUserApplications = () => {
     const accessToken = Cookies.get('access-token');
     
     const getAllUserApplicationsRequest = async (): Promise<Application> => {
-        const response = await fetch(`${API_BASE_URL}/api/v1/application/findByUser`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/application/findByUser`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
             }
@@ -66,7 +65,7 @@ export const useGetLoanApplicationData = (loanId: string) => {
     const accessToken = Cookies.get('access-token');
     
     const getApplicationRequest = async (loanId:string): Promise<Application> => {
-        const response = await fetch(`${API_BASE_URL}/api/v1/application/findById?id=${loanId}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/application/findById?id=${loanId}`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
             }
@@ -89,7 +88,7 @@ export const useGetLoanApplicationData = (loanId: string) => {
 export const useUpdateApplication = () => {
     const updateApplicationRequest = async (application: UpdateApplicationTypes) => {
         const accessToken = Cookies.get('access-token');
-        const response = await fetch(`${API_BASE_URL}/api/v1/application/update?id=${application._id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/application/update?id=${application._id}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
@@ -126,7 +125,7 @@ export const useUpdateApplication = () => {
 export const useDeleteApplication = () => {
     const updateApplicationApplicationRequest = async (applicationId: string) => {
         const accessToken = Cookies.get('access-token');
-        const response = await fetch(`${API_BASE_URL}/api/v1/application/delete?id=${applicationId}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/application/delete?id=${applicationId}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${accessToken}`,

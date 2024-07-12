@@ -1,13 +1,14 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { KeyIcon, User2Icon } from 'lucide-react';
+import Link from 'next/link';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import LoadingButton from '../LoadingButton';
 import { Button } from '../ui/button';
 import { Checkbox } from '../ui/checkbox';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '../ui/form';
 import { Input } from '../ui/input';
-
 const formSchema = z.object({
   email: z.string().email(),
   password: z.string().min(2, 'Password is required'),
@@ -33,48 +34,57 @@ const SignInForm = ({ onSignIn, isLoading }: Props) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSignIn)} className='space-y-2 w-full md:w-4/5'>
-        <FormField
-          control={form.control}
-          name='email'
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder="Email address" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='password'
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <Input type={passwordVisible ? 'text' : 'password'} placeholder="Password" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <div className='flex items-center justify-start gap-2'>
+      <form onSubmit={form.handleSubmit(onSignIn)} className='w-full text-white space-y-5'>
+
+        <div className="relative">
+          <FormField
+
+            control={form.control}
+            name='email'
+            render={({ field }) => (
+              <FormItem className='bg-transparent'>
+                {/* <FormLabel>Email</FormLabel> */}
+                <FormControl>
+                  <Input placeholder="Email address" {...field} className="h-14 peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <User2Icon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-[#1170b2] peer-focus:text-gray-900" />
+
+        </div>
+        <div className="relative">
+          <FormField
+            control={form.control}
+            name='password'
+            render={({ field }) => (
+              <FormItem className='bg-transparent'>
+                {/* <FormLabel>Password</FormLabel> */}
+                <FormControl>
+                  <Input type={passwordVisible ? 'text' : 'password'} placeholder="Password" {...field} className="h-14 peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-[#1170b2] peer-focus:text-gray-900" />
+        </div>
+
+        <div className='flex items-center justify-start gap-2 my-5'>
           <Checkbox id='viewpassword' className='' onClick={() => setPasswordVisible(!passwordVisible)} />
           <label htmlFor='viewpassword' className='text-sm'> View password</label>
         </div>
 
-        <div className='flex justify-between items-center'>
-          {isLoading ? <LoadingButton /> : <Button type='submit' className='bg-gray-800 hover:bg-gray-600 text-white'>Submit</Button>}
-          <div>
+        <div className='items-center w-full '>
+          {isLoading ? <LoadingButton /> : <Button type='submit' className='bg-[#1170b2] hover:bg-gray-600 text-white w-[380px]'>Submit</Button>}
+          <div className='mt-7'>
             {`Don't have an account? `}
-            <a href={'/public_pages/SignUp'} className='text-blue-600'>Create account</a>
+            <Link href={'/auth/SignUp'} onClick={() => window.localStorage.setItem('menu', 'SignUp')} className='text-blue-600'>Create account</Link>
           </div>
         </div>
         <div className='mt-5'>
-          {`Forgot your password? `}
-          <a href={'/forgotpassword'} className='text-blue-600'>Recover or reset your password</a>
+          <a href={'/forgotpassword'} className='text-blue-600'>Forgot your password?</a>
         </div>
       </form>
 

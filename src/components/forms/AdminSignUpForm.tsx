@@ -8,10 +8,14 @@ import { Checkbox } from '../ui/checkbox';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
 import { Input } from '../ui/input';
 
+const phoneRegex = /^\+\d{1,3}-\d{3}-\d{6}$/;
+
 const formSchema = z.object({
   surName: z.string().min(2).max(50),
   givenName: z.string().min(2).max(50),
-  phone: z.string().min(10).max(10),
+  phone: z.string().optional().refine((val) => val === undefined || val === "" || phoneRegex.test(val), {
+    message: "Phone number must include country code and be formatted correctly"
+}),
   email: z.string().email('Invalid email'),
   password: z.string().min(2, 'Too short'),
   role: z.string()
@@ -90,7 +94,7 @@ const AdminSignUpForm = ({ onSignUp, isLoading }: Props) => {
             <FormItem>
               <FormLabel>Phone number</FormLabel>
               <FormControl>
-                <Input type='tel' placeholder="Your phone number" {...field} />
+                <Input type='tel' placeholder="+256-000-000000" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

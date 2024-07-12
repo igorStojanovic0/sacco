@@ -32,7 +32,7 @@ const StoreContext = ({ children }: Props) => {
         _id: "",
         name: "",
         email: "",
-        phone: "",
+        phone: "123",
         surName: "",
         givenName: "",
         role: "",
@@ -48,7 +48,7 @@ const StoreContext = ({ children }: Props) => {
     }
 
     return (
-        <Store.Provider value={contextData}>
+        <Store.Provider value={{user,setUser}}>
             {children}
         </Store.Provider>
     )

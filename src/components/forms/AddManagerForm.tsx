@@ -6,11 +6,14 @@ import LoadingButton from '../LoadingButton';
 import { Button } from '../ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
 import { Input } from '../ui/input';
+const phoneRegex = /^\+\d{1,3}-\d{3}-\d{6}$/;
 
 const formSchema = z.object({
   surName: z.string().min(2).max(50),
   givenName: z.string().min(2).max(50),
-  phone: z.string().min(10).max(10),
+  phone: z.string().optional().refine((val) => val === undefined || val === "" || phoneRegex.test(val), {
+    message: "Phone number must include country code and be formatted correctly"
+}),
   email: z.string().email('Invalid email'),
   password: z.string().min(2, 'Too short'),
   role: z.string()

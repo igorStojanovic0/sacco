@@ -8,7 +8,7 @@ const Profile = () => {
   // const userContext = useContext(Store);
   const { updateAccount, isLoading } = useUpdateUserAccount();
   const { currentUser } = useGetProfileData();
-
+  
   if (currentUser) {
     return (
       <section className="flex flex-col gap-4">

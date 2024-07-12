@@ -8,11 +8,15 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import LoadingButton from '../LoadingButton';
 
+const phoneRegex = /^\+\d{1,3}-\d{3}-\d{6}$/;
+
 const formSchema = z.object({
     email: z.string().optional(),
     surName: z.string().min(1, "First name is required"),
     givenName: z.string().min(1, "Last name is required"),
-    phone: z.string().min(10, "Phone number is required")
+    phone: z.string().optional().refine((val) => val === undefined || val === "" || phoneRegex.test(val), {
+        message: "Phone number must include country code and be formatted correctly"
+    }),
 });
 
 // Determining the type of our form data by infering it from the zod schema 
@@ -91,7 +95,7 @@ const ManagerProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
                             <FormItem className='w-[49%]'>
                                 <FormLabel>Phone number</FormLabel>
                                 <FormControl>
-                                    <Input {...field} className='bg-white' />
+                                    <Input {...field} className='bg-white' placeholder='+256-000-000000'/>
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -99,7 +103,7 @@ const ManagerProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
                     />
                 </div>
 
-                {isLoading ? <LoadingButton /> : <Button type='submit' className='bg-orange-500'>Submit</Button>}
+                {isLoading ? <LoadingButton /> : <Button type='submit' className='bg-[rgb(50,86,166)]'>Submit</Button>}
             </form>
         </Form>
     )
