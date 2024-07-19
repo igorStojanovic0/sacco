@@ -8,22 +8,22 @@ export type ProgressInfo = {
   
   const process: ProgressInfo[] = [
     {
-      picture: "progress2.png",
+      picture: "/assets/progress2.png",
       description: "Fill applicaiton form here",
       destination: "/apply"
     },
     {
-      picture: "progress3.png",
+      picture: "/assets/progress3.png",
       description: "Upload needed attachments",
       destination: "/apply"
     },
     {
-      picture: "progress1.png",
+      picture: "/assets/progress1.png",
       description: "Get progress information",
       destination: "/account"
     },
     {
-      picture: "progress4.png",
+      picture: "/assets/progress4.png",
       description: "Recieve loan confirmation in few days",
       destination: "/account"
     },

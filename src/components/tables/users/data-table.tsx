@@ -66,7 +66,7 @@ export function DataTable<TData, TValue>({
 
     return (
         <div>
-            <div className="flex items-center py-4">
+            <div className="flex items-center py-4 px-2">
                 <Input
                     placeholder="Filter emails..."
                     value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
@@ -75,13 +75,13 @@ export function DataTable<TData, TValue>({
                     }
                     className="max-w-sm"
                 />
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="outline" className="ml-auto">
+                <DropdownMenu >
+                    <DropdownMenuTrigger asChild >
+                        <Button variant="outline" className="ml-auto bg-[#d4d6f3] hover:bg-[#bfc0e7]">
                             Columns
                         </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
+                    <DropdownMenuContent align="end" className="bg-green-300">
                         {table
                             .getAllColumns()
                             .filter(
@@ -104,7 +104,7 @@ export function DataTable<TData, TValue>({
                     </DropdownMenuContent>
                 </DropdownMenu>
             </div>
-            <div className="rounded-md border w-full">
+            <div className="rounded-md border w-full bg-[#bfc0e7]">
                 <Table>
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
@@ -148,7 +148,7 @@ export function DataTable<TData, TValue>({
                     </TableBody>
                 </Table>
             </div>
-            <div className="flex items-center justify-end space-x-2 py-4">
+            <div className="flex items-center justify-end py-4">
                 <Button
                     variant="outline"
                     size="sm"

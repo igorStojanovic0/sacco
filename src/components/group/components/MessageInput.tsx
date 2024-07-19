@@ -16,8 +16,8 @@ import { trimMessage } from "../lib/strings"
 
 const MessageInput = () => {
     const params = useParams()
-    const userId = localStorage.getItem('user')    
-    const { msgEmit, msgInputState } = useMyContext() 
+    const userId = localStorage.getItem('user')
+    const { msgEmit, msgInputState } = useMyContext()
     const [msgText, setMsgText] = useState("")
     //   const { selectedConversation } = useConversationStore()
     //   const sendTextMsg = useMutation(api.messages.sendTextMessage)
@@ -31,30 +31,50 @@ const MessageInput = () => {
 
     const handleSendTextMsg = async (e: React.FormEvent) => {
         e.preventDefault()
-        
+
         try {
-            var Data = {
-                userId: userId,
-                groupId: params?.groupId,
-                roomId: `${params?.groupId}${params?.wId}`,
-                content: trimMessage(msgText),
-            }
+            if (params?.wId) {
+                var Data = {
+                    userId: userId,
+                    groupId: params?.groupId,
+                    roomId: `${params?.groupId}${params?.wId}`,
+                    content: trimMessage(msgText),
+                }
 
-            if ( msgText?.length > 0 ) {
-                await msgEmit("C2S_GROUP_CHAT_ROOM_MESSAGE_NEW", Data)
-            } else {
-                alert('nothing input')
-            }
-            // await sockets.emit("C2S_GROUP_CHAT_ROOM_MESSAGE_NEW", Data)
+                if (msgText?.length > 0) {
+                    await msgEmit("C2S_GROUP_CHAT_ROOM_MESSAGE_NEW", Data)
+                } else {
+                    alert('nothing input')
+                }
+            } else if (params?.fId) {
+                var Data = {
+                    userId: userId,
+                    groupId: params?.groupId,
+                    roomId: `${params?.fId}`,
+                    content: trimMessage(msgText),
+                }
 
-            
-            //   await sendTextMsg({
-            //     content: msgText,
-            //     conversation: selectedConversation!._id,
-            //     sender: me!._id,
-            //   })
+                if (msgText?.length > 0) {
+                    await msgEmit("C2S_GROUP_FRIEND_CHAT_ROOM_MESSAGE_NEW", Data)
+                } else {
+                    alert('nothing input')
+                }
+            } else if (params?.cId) {
+                var Data = {
+                    userId: userId,
+                    groupId: params?.groupId,
+                    roomId: `${params?.groupId}${params?.cId}`,
+                    content: trimMessage(msgText),
+                }
+
+                if (msgText?.length > 0) {
+                    await msgEmit("C2S_GROUP_CHAT_ROOM_MESSAGE_NEW", Data)
+                } else {
+                    alert('nothing input')
+                }
+            }
             setMsgText("")
-            
+
         } catch (error: any) {
             toast.error(error.message)
             console.log(error)
@@ -81,7 +101,7 @@ const MessageInput = () => {
                                 left: "1rem",
                                 zIndex: 50,
                             }}
-                            
+
                         />
                     )}
                     <Laugh className="text-[#374365] dark:text-gray-400" />
@@ -94,7 +114,7 @@ const MessageInput = () => {
                         // type="text"
                         rows={1}
                         placeholder="Type a message"
-                        className="py-2 text-sm w-full min-h-12 resize-y rounded-lg border-[#374365] shadow-sm bg-gray-tertiary placeholder:bg-text-400 focus-visible:ring-transparent"
+                        className="py-2 text-sm w-full min-h-10 resize-y rounded-lg bg-gray-tertiary placeholder:text-gray-400 border-[#bfc3f0]"
                         value={msgText}
                         onChange={(e) => setMsgText(e.target.value)}
                         disabled={!msgInputState}

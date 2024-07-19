@@ -1,4 +1,4 @@
-import { CreateGroupTypes, GroupTypes, JoinedGroupTypes, JoinGroupTypes } from "@/types";
+import { CreateGroupTypes, GroupTypes, JoinGroupTypes } from "@/types";
 import Cookies from "js-cookie";
 import { useMutation, useQuery } from 'react-query';
 import { toast } from 'sonner';
@@ -61,21 +61,21 @@ export const useGetGroupList = () => {
         if (!response.ok) {
             throw new Error(responseData.message);
         }
-        const { groupList} = responseData
-        return groupList;
+        const { allGroupList} = responseData
+        return allGroupList;
     };
 
-    const { data: groupList , isLoading } = useQuery("groupList", () => getAllGroupList());
+    const { data: allGroupList , isLoading } = useQuery("allGroupList", () => getAllGroupList());
 
-    return { groupList, isLoading }
+    return { allGroupList, isLoading }
 };
 
 
-export const useGetjoinedGroupList = (userId: string) => {
+export const useGetjoinedGroupList = () => {
     const accessToken = Cookies.get('access-token');
     
-    const getJoinedGroupList = async (userId: string): Promise<JoinedGroupTypes[]> => {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/group/findByUserId?userId=${userId}`, {
+    const getJoinedGroupList = async () => {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/group/findByUserId`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
             }
@@ -92,7 +92,7 @@ export const useGetjoinedGroupList = (userId: string) => {
         return joinedGroupList;
     };
 
-    const { data: joinedGroupList, isLoading } = useQuery("joinedGroupList", () => getJoinedGroupList(userId));
+    const { data: joinedGroupList, isLoading } = useQuery("joinedGroupList", () => getJoinedGroupList());
 
     return { joinedGroupList, isLoading }
 };

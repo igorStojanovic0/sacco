@@ -1,5 +1,5 @@
 "use client"
-
+import { useGetGroupUserList } from '@/api/auth';
 import { useGetGroupChatMsg } from '@/api/groupChat';
 import { useMyContext } from '@/context/MyContext';
 import moment from 'moment';
@@ -23,13 +23,13 @@ type Message = {
 const WelcomePage = () => {
     const group_id = localStorage.getItem('groupId')
     const { groupChatMsg } = useGetGroupChatMsg(group_id as string)
-    const { addGroupMsg, roomEnter } = useMyContext()
+    const { addGroupMsg, groupRoomEnter, setMemberList } = useMyContext()
     const [addMsg, setaddMsg] = useState<Message[]>([])
     
     const [chatMsg, setChatMsg] = useState<Message[]>([])
     const params = useParams()
-    const groupId = params?.groupId
-    
+    const { groupUserList } = useGetGroupUserList(params?.groupId as string)
+
     useEffect(() => {
         setaddMsg([...addMsg, addGroupMsg])
     },[addGroupMsg])
@@ -44,10 +44,12 @@ const WelcomePage = () => {
     },[groupChatMsg])
     
     useEffect(() => {
-      console.log("${params?.groupId}${params?.wId", `${params?.groupId}${params?.wId}`);
-      
-      roomEnter('C2S_GROUP_CHAT_ROOM_USER_ENTER', `${params?.groupId}${params?.wId}`)
+      groupRoomEnter('C2S_GROUP_CHAT_ROOM_USER_ENTER', `${params?.groupId}${params?.wId}`)
     },[])
+
+    useEffect(() => {
+      setMemberList(groupUserList)
+  },[groupUserList])
     return (
 
         <>

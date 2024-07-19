@@ -299,6 +299,8 @@ export const useGetAllUsers = () => {
     return { allUsers, isLoading }
 };
 
+
+
 export const useGetGroupUserList = (groupId: string) => {
     const accessToken = Cookies.get('access-token');
     
@@ -323,4 +325,56 @@ export const useGetGroupUserList = (groupId: string) => {
     const { data: groupUserList, isLoading } = useQuery("groupUserList", () => getGroupUserList(groupId));
 
     return { groupUserList, isLoading }
+};
+
+export const useGetGroupChannelUserList = (channelId: string) => {
+    const accessToken = Cookies.get('access-token');
+    
+    const getGroupChannelUserList = async (channelId: string) => {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/findByChannelId?channelId=${channelId}`, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+            }
+        });
+
+        const responseData = await response.json();
+        
+        if (!response.ok) {
+            throw new Error(responseData.message);
+        }
+
+        const { groupChannelUserList} = responseData
+
+        return groupChannelUserList;
+    };
+
+    const { data: groupChannelUserList, isLoading } = useQuery("groupChannelUserList", () => getGroupChannelUserList(channelId));
+
+    return { groupChannelUserList, isLoading }
+};
+
+export const useGetGroupFriendList = (groupId: string) => {
+    const accessToken = Cookies.get('access-token');
+    
+    const getGroupFriendList = async (groupId: string) => {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/groupUserFriend/findByGroupIdUserId?groupId=${groupId}`, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+            }
+        });
+
+        const responseData = await response.json();
+        
+        if (!response.ok) {
+            throw new Error(responseData.message);
+        }
+
+        const { groupFriendList} = responseData
+
+        return groupFriendList;
+    };
+
+    const { data: groupFriendList, isLoading } = useQuery("groupFriendList", () => getGroupFriendList(groupId));
+
+    return { groupFriendList, isLoading }
 };

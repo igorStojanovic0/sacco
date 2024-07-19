@@ -1,7 +1,6 @@
 'use client';
 
 import { useGetProfileData } from '@/api/auth';
-import { useGetjoinedGroupList } from '@/api/group';
 import GroupCreateDialog from '@/components/group/groupCreateDialog';
 import { Eye, Verified } from '@/components/group/icons';
 import { useMyContext } from '@/context/MyContext';
@@ -12,9 +11,9 @@ import { ReactNode } from 'react';
 
 const GroupNav = () => {
   const userId = localStorage.getItem('user')
-  const { joinedGroupList } = useGetjoinedGroupList(userId as string);
+  // const { joinedGroupList } = useGetjoinedGroupList(userId as string);
   const { currentUser } = useGetProfileData()
-  const { groupList } = useMyContext()
+  const { groupNotificationFlag, sendMsgGroupId, groupList } = useMyContext()
   
   return (
     <nav className='space-y-2 bg-[#6b75e4] p-3 overflow-y-auto overflow-x-hidden' style={{ scrollbarWidth: 'none' }}>
@@ -31,18 +30,19 @@ const GroupNav = () => {
         </NavLink>
       ))} */}
 
-      {joinedGroupList?.map((group) => (
+      {groupList?.map((group) => (
         <NavLink
           // href={`/Groups/servers/${group.group_id}/channels/${server.categories[0].channels[0].id}`}
           href={`/Groups/${group?.group_id}/welcome/1`}
           key={group.group_id}
         // active={params.sid === group.group_id.toString()}
         >
+          {(sendMsgGroupId === group?.group_id) && groupNotificationFlag && (
+            <div className="absolute top-0 right-0 w-4 h-4 bg-red-500 rounded-full border-2 border-[#d4d6f3]" />
+          )}
           <Image width={48} height={48} src={(group?.group_avatar === 'default' || !group?.group_avatar) ? '/servers/mirage.png' : `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/${group.group_avatar}`} alt='group' />
         </NavLink>
       ))}
-
-
 
       <hr className='mx-2 rounded border-t-2 border-t-white/[0.06]' />
 

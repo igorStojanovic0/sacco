@@ -5,16 +5,14 @@ import {
     SheetHeader,
     SheetTitle,
     SheetTrigger,
-} from "@/components/ui/sheet"
+} from "@/components/ui/sheet";
 import { Button } from "../ui/button";
-import { Application } from "@/types";
 
 type Props = {
     command: "Approve" | "Request updates to" | "Reject";
-    loanDetails: Application;
 };
 
-const LoanStatusUpdateSheet = ({ command, loanDetails }: Props) => {
+const LoanStatusUpdateSheet = ({ command }: Props) => {
     return (
         <Sheet>
             <SheetTrigger>

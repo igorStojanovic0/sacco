@@ -107,18 +107,6 @@ const CreateUserProfile = () => {
                                 <CheckCircleIcon color={`${progress >= 80 ? 'green' : 'white'}`} />
                             </div>
                         </ListItem>
-                        {/* <ListItem className={`"hover:bg-green-600" ${step === 5 ? 'bg-green-600' : ''}`} onClick={() => {
-                            setStep(5); setSubStep(19)
-                        }}>
-                            <BarChartIcon className="h-5 w-5" />
-                            Group Membership Info
-                        </ListItem> */}
-                        {/* <ListItem className={`"hover:bg-green-600" ${step === 6 ? 'bg-green-600' : ''}`} onClick={() => {
-                            setStep(6); setSubStep(21)
-                        }}>
-                            <BarChartIcon className="h-5 w-5" />
-                            User Unique Profile ID
-                        </ListItem> */}
                         <ListItem className={`"hover:bg-green-600" ${step === 6 ? 'bg-green-600' : ''}`} onClick={() => {
                             setStep(6); setSubStep(19)
                         }}>
@@ -137,7 +125,7 @@ const CreateUserProfile = () => {
                     <section className="flex flex-col gap-4 fixed">
                         <div className="flex flex-col gap-4 p-5 md:p-0">
                             <UserCreateProfileForm
-                                currentUser={currentUser}
+                                currentUser={currentUser as any}
                                 onSave={updateAccount}
                                 isLoading={isLoading}
                                 step={step}

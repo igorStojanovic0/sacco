@@ -1,4 +1,4 @@
-import { JoinedGroupTypes } from "@/types";
+import { FriendTypes, JoinedGroupTypes, User } from "@/types";
 import Cookies from 'js-cookie';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
@@ -21,43 +21,43 @@ type AddGroupMsg = {
 }
 
 type MyContextType = {
-    //   showDate: any;
-    //   setShowDate: (value: any) => void;
-    //   showCaledarEventModal: boolean;
-    //   setShowCalendarEventModal: (value: boolean) => void;
-    //   datesEvents: any;
-    //   setDatesEvents: (value: any) => void;
-    //   setProfileEditData: (value: any) => void;
-    //   profileEditData: any;
-    //   calendarDateEvents : any;
-    //   setCalendarDateEvents : (value: any) => void;
     isConnected: boolean;
     setConnected: (value: boolean) => void;
     msgEmit: (type: string, content: any) => void;
-    roomEnter: (type: string, content: any) => void;
+    groupRoomEnter: (type: string, content: any) => void;
+    userEnter: (type: string, content: any) => void;
+    groupEnter: (type: string, content: any) => void;
+    groupFriendRoomEnter: (type: string, content: any) => void;
+    groupChannelRoomEnter: (type: string, content: any) => void;
     sockets: any;
     addGroupMsg: AddGroupMsg;
-    groupList: JoinedGroupTypes[]
-    setGroupList: (value: JoinedGroupTypes[]) => void
+    groupList: JoinedGroupTypes[] | undefined
+    setGroupList: (value: JoinedGroupTypes[] | undefined) => void
     msgInputState: boolean;
     setMsgInputState: (value: boolean) => void;
+    addFriend: (userId: string, friendId: string, groupId: string) => void;
+    newFriend: FriendTypes;
+    memberList: User[];
+    setMemberList: (value: User[]) => void;
+    groupNotificationFlag: boolean;
+    setGroupNotificationFlag: (value: boolean) => void;
+    sendMsgGroupId: string;
+    setSendMsgGroupId: (value: string) => void;
+    sendMsgRoomId: string[];
+    setSendMsgRoomId: (value: string[]) => void;
+    loggedUser?: User | null;
+    setLoggedUser: (value: User | null) => void;
+    selectedGroupId: string | undefined;
+    setSelectedGroupId: (value: string | undefined) => void;
 };
 
 
 const MyContext = createContext<MyContextType | undefined>(undefined);
 
 export const MyProvider = ({ children }: Props) => {
-    //   const currentDate = new Date();
-    //   const year = currentDate.getFullYear();
-    //   const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-    //   const day = String(currentDate.getDate()).padStart(2, '0');
-    //   const formattedDate = `${year}-${month}-${day}`;
-    //   const [showDate, setShowDate] = useState(formattedDate);
-    //   const [calendarDateEvents, setCalendarDateEvents] = useState([]);
-    //   const [datesEvents, setDatesEvents] = useState([]);
-    //   const [showCaledarEventModal, setShowCalendarEventModal] = useState(false);
-    //   const [profileEditData, setProfileEditData] = useState([]);
-    const [groupList, setGroupList] = useState<JoinedGroupTypes[]>([]);
+    let userId = localStorage?.getItem('user')
+    const [groupList, setGroupList] = useState<JoinedGroupTypes[] | undefined>([]);
+    const [memberList, setMemberList] = useState<User[]>([]);
     const [sockets, setSocket] = useState<Socket>()
     const [isConnected, setConnected] = useState(false)
     const [addGroupMsg, setAddGroupMsg] = useState<AddGroupMsg>({
@@ -71,9 +71,49 @@ export const MyProvider = ({ children }: Props) => {
         photograph: '',
         _id: ''
     })
+    const [newFriend, setNewFriend] = useState<FriendTypes>({
+        _id: '',
+        title: '',
+        surName: '',
+        givenName: '',
+        otherNames: '',
+        photograph: '', 
+        gender: 'Male',
+        tribe: '',
+        religion: '',
+        placeOfBirth: '',
+        currentParish: '',
+        birthday: new Date(),
+        nationalIDNumber: '',
+        nationalIDPhoto: '',
+        phone: '',
+        email: '',
+        homeAddress: '',
+        homeLocation: '',
+        districtOfBirth: '',
+        birthParish: '',
+        birthVillage: '',
+        birthHome: '',
+        maritalStatus: '',
+        profession: '',
+        placeOfWorkAddress: '',
+        userID: '',
+        is_active: false,
+        userId: '',
+        friendId: '',
+        groupId: '',
+        roomId: '',
+        role_name: '',
+    })
     const [msgInputState, setMsgInputState] = useState<boolean>(false)
+    const [groupNotificationFlag, setGroupNotificationFlag] = useState<boolean>(false)
+    const [sendMsgGroupId, setSendMsgGroupId] = useState<string>('')
+    const [sendMsgRoomId, setSendMsgRoomId] = useState<string[]>([])
     const token = Cookies.get('access-token')
+    const [loggedUser, setLoggedUser] = useState<User | null>(null)
 
+    const [selectedGroupId, setSelectedGroupId] = useState<string | undefined>()
+    
     const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL as string);
     const connect = () => {
         setSocket(socket)
@@ -97,58 +137,100 @@ export const MyProvider = ({ children }: Props) => {
             socket.emit("C2S_AUTH_AUTHORIZATION", { token });
             console.log("connected");
         });
-        
+
     };
 
     const msgEmit = (type: string, content: any) => {
         socket.emit(type, content);
     }
+    
+    const userEnter = (type: string, user: string) => {
+        socket.emit(type, user);
+    }
 
-    const roomEnter = (type: string, roomId: any) => {
-        socket.emit(type, roomId);
+    const groupEnter = (type: string, groupId: string) => {
+        socket.emit(type, groupId);
+    }
+
+    const groupRoomEnter = (type: string, groupRoomId: any) => {
+        socket.emit(type, groupRoomId);
+    }
+
+    const groupFriendRoomEnter = (type: string, groupFriendRoomId: string) => {
+        socket.emit(type, groupFriendRoomId);
+    }
+
+    const groupChannelRoomEnter = (type: string, groupChannelRoomId: string) => {
+        socket.emit(type, groupChannelRoomId);
     }
 
     socket.on("S2C_GET_ALL_GROUP_MESSAGE", (data) => {
-        console.log("S2C_GET_ALL_GROUP_MESSAGE", data);
         const { results } = data
         setAddGroupMsg(results[0])
     })
 
+    const addFriend = (userId: string, friendId: string, groupId: string) => {
+        socket.emit('C2S_ADD_FRIEND', { userId: userId, friendId: friendId, groupId: groupId })
+    }
+
+    socket.on('S2C_ADD_FRIEND', (data) => {
+        const { friend } = data
+        if(friend[0] !== undefined || friend[0] !== 'undefined') {
+            setNewFriend(friend[0])
+        } else {
+            return
+        }
+        console.log("S2C_ADD_FRIEND", friend[0]);
+    })
+
     useEffect(() => {
         connect()
-        // socket.emit("C2S_GROUP_CHAT_ROOM_MESSAGE_NEW", {
-        //         userId: 'userId',
-        //         groupId: 'params',
-        //         roomId: 'params',
-        //         content: 'msgText',
-        // })
     }, [])
 
-    
+    socket.on("S2C_SEND_ALL_USER_MESSAGE", (data) => {
+        const { results } = data
+        const msg = results[0]
+        if(msg?.creatorId === userId) {
+            setSendMsgGroupId('')
+            // setSendMsgRoomId([])
+        } else {
+            setSendMsgGroupId(msg?.groupId)
+            setGroupNotificationFlag(true)
+            sendMsgRoomId.push(msg?.roomId)
+        }
+    })
 
     return (
         <MyContext.Provider
             value={{
-                // showCaledarEventModal,
-                // setShowCalendarEventModal,
-                // profileEditData,
-                // setProfileEditData,
-                // datesEvents,
-                // setDatesEvents,
-                // showDate,
-                // setShowDate,
-                // calendarDateEvents,
-                // setCalendarDateEvents
                 sockets,
                 isConnected,
                 setConnected,
                 msgEmit,
-                roomEnter,
+                groupRoomEnter,
+                userEnter,
+                groupEnter,
+                groupFriendRoomEnter,
+                groupChannelRoomEnter,
                 addGroupMsg,
                 setGroupList,
                 groupList,
                 msgInputState,
-                setMsgInputState
+                setMsgInputState,
+                addFriend,
+                newFriend,
+                memberList,
+                setMemberList,
+                groupNotificationFlag,
+                setGroupNotificationFlag,
+                sendMsgGroupId,
+                setSendMsgGroupId,
+                sendMsgRoomId,
+                setSendMsgRoomId,
+                loggedUser,
+                setLoggedUser,
+                selectedGroupId,
+                setSelectedGroupId
             }}
         >
             {children}

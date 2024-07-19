@@ -1,17 +1,17 @@
 "use client"
 import { useGetProfileData } from "@/api/auth";
 import HelmetComponent from "@/components/HelmetComponent";
-import About from "@/components/landingPage/About";
-import Feature from "@/components/landingPage/Feature";
-import Hero from "@/components/landingPage/Hero";
-import Layout from "@/components/landingPage/Layout/Layout";
+import About from "@/components/sacco/LP/About";
+import Benefits from "@/components/sacco/LP/Benefits";
+import SaccoHero from "@/components/sacco/LP/Hero1";
+import WorkStep from "@/components/sacco/LP/how_work";
+import Layout from "@/components/sacco/LP/Layout/Layout";
 import { User } from "@/types";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import "./slick.css";
 import "./tailwind.css";
-
 
 export default function Home() {
 
@@ -48,14 +48,10 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <HelmetComponent title="Welcome to Twezimbe" description="The quickest way to apply for a Loan in SACCO" />
-      {/* <Header />
-      <Hero/>
-      <FastAndEffiscient />
-      <FeedBack />
-      <Footer/> */}
       <Layout>
-        <Hero />
-        <Feature />
+        <SaccoHero />
+        <WorkStep />
+        <Benefits />
         <About />
       </Layout>
     </div>

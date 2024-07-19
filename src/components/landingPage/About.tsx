@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useMemo } from "react";
 import Maps from "../../../public/assets/HugeGlobal.svg";
 import getScrollAnimation from "../../utils/getScrollAnimation";
 import ScrollAnimationWrapper from "./Layout/ScrollAnimationWrapper";
 import Testimoni from "./Testimoni";
-import ButtonPrimary from "./misc/ButtonPrimary";
+import ButtonOutline from "./misc/ButtonOutline.";
 
 const About = () => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
@@ -93,7 +94,8 @@ const About = () => {
                     Ready to transform your SACCO, Fundraising and Bereavement Fund management?
                   </h5>
                 </div>
-                <ButtonPrimary>Get Started</ButtonPrimary>
+                <Link href={'/Groups'}><ButtonOutline>Create a Group</ButtonOutline></Link>
+                <Link href={'/Groups'}><ButtonOutline>Join a Group</ButtonOutline></Link>
               </div>
               <div
                 className="absolute bg-[#0B132A] opacity-5 w-11/12 roudned-lg h-60 sm:h-56 top-0 mt-8 mx-auto left-0 right-0"

@@ -1,5 +1,4 @@
 "use client"
-import { useGetProfileData } from '@/api/auth';
 import { useGetGroupList, useGetjoinedGroupList, useJoinGroup } from "@/api/group";
 import { UserSection } from "@/components/group/components/UserSection";
 import CourseCard from '@/components/group/CourseCard';
@@ -8,7 +7,7 @@ import { Box } from '@mui/system';
 import { motion } from 'framer-motion';
 import Image from "next/image";
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
 type CourseProgress = {
   currentStep: number;
@@ -31,12 +30,10 @@ type Course = {
 
 export default function Home() {
 
-  const [hideCompleted, setHideCompleted] = useState(false);
-  const { currentUser } = useGetProfileData();
-
-  const { groupList } = useGetGroupList();
-  const { joinedGroupList } = useGetjoinedGroupList(currentUser?._id as string)
+  const { allGroupList } = useGetGroupList();
+  const { joinedGroupList } = useGetjoinedGroupList()
   const { joinGroup } = useJoinGroup();
+
   return (
     <>
       {/* Channels */}
@@ -76,14 +73,14 @@ export default function Home() {
             className="relative overflow-hidden flex shrink-0 items-center justify-center py-48"
             height={100}
             sx={{
-              backgroundColor: '#1e293b',
+              backgroundColor: '#6b75e4',
               color: 'white',
             }}
           >
             <div className="flex flex-col items-center justify-center mx-auto w-full mt-8">
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0 } }}>
                 <Typography color="inherit" className="!text-3xl font-semibold">
-                Join a group.
+                Connect, grow
                 </Typography>
               </motion.div>
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0 } }}>
@@ -91,7 +88,7 @@ export default function Home() {
                   color="inherit"
                   className="text-center !text-4xl sm:text-48 font-extrabold tracking-tight mt-4"
                 >
-                  Become part of a community.Connect, grow
+                  Become part of a community
                   
                 </Typography>
               </motion.div>
@@ -103,7 +100,6 @@ export default function Home() {
                   color="inherit"
                   className="!text-xl mt-12 sm:mt-24 opacity-75 tracking-tight max-w-md text-center"
                 >
-                 Connect, grow
                 </Typography>
               </motion.div>
             </div>
@@ -150,15 +146,15 @@ export default function Home() {
               };
 
               return (
-                groupList &&
-                (groupList.length > 0 ? (
+                allGroupList &&
+                (allGroupList.length > 0 ? (
                   <motion.div
                     className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 mt-32 sm:mt-20"
                     variants={container}
                     initial="hidden"
                     animate="show"
                   >
-                    {groupList.map((course) => {
+                    {allGroupList.map((course) => {
                       return (
                         <motion.div variants={item} key={course._id} >
                           <CourseCard course={course}
@@ -177,7 +173,7 @@ export default function Home() {
                   </div>
                 ))
               );
-            }, [groupList])}
+            }, [allGroupList])}
           </div>
         </div>
       </div>

@@ -3,7 +3,6 @@ import { useGetjoinedGroupList } from '@/api/group';
 import { useMyContext } from '@/context/MyContext';
 import '@/styles/globals.css';
 import '@/styles/styles.css';
-import { JoinedGroupTypes } from '@/types';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
@@ -14,21 +13,24 @@ export default function GroupsLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { setGroupList } = useMyContext()
   const router = useRouter()
   const access_token = Cookies.get('access-token')
-  const userId = localStorage.getItem('user')
-  const { joinedGroupList } = useGetjoinedGroupList(userId as string);
+  const { userEnter,setGroupList } = useMyContext()
+  const { joinedGroupList } = useGetjoinedGroupList()
   
-  if(joinedGroupList !== undefined || joinedGroupList !== 'undefined') {
-    setGroupList(joinedGroupList as JoinedGroupTypes[])
-  }
+  useEffect(() => {
+    setGroupList(joinedGroupList)
+  }, [joinedGroupList])
   
   useEffect(() => {
     if (!access_token) {
       router.push('/auth/SignIn')
     }
   }, [])
+
+  useEffect(() => {
+    userEnter('C2S_USER_ENTER', `allGroups`)
+  },[])
   return (
         <div className='flex h-screen text-gray-100'>
           <GroupNav />

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useMemo } from "react";
 import getScrollAnimation from "../../utils/getScrollAnimation";
 import ScrollAnimationWrapper from "./Layout/ScrollAnimationWrapper";
@@ -42,7 +43,10 @@ const Hero = ({
             <p className="text-[#4F5665] mt-4 mb-6">
               Your All-in-One Platform for SACCO and Bereavement Fund Efficiency
             </p>
-            <ButtonPrimary>GET STARTED</ButtonPrimary>
+            <div className="gap-5 space-x-5">
+            <Link href={'/Groups'}><ButtonPrimary>Create a Group</ButtonPrimary></Link>
+            <Link href={'/Groups'}><ButtonPrimary>Join a Group</ButtonPrimary></Link>
+            </div>
           </div>
           <div className="flex w-full">
             <motion.div className="h-full w-full" variants={scrollAnimation}>
