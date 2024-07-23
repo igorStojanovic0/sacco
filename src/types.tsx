@@ -261,6 +261,94 @@ export type GroupChannelTypes = {
     createdAt: Date;
 };
 
+export type CreateSaccoTypes = {
+    name: string;
+    entranceFee?: {
+        adults: string;
+        children: string;
+        teens: string;
+        friend: string;
+    };
+    shares?:{
+        initialNumber: string;
+        nominalPrice: string;
+        maxInitial: string;
+    };
+    saving?: {
+        minimumAmount: string;
+        lumpSum: string;
+    }
+    notificationStatus?: string;
+    loanType?: string;
+    priorityOfLoan?: string;
+    traningProgram?: string;
+    role?: {
+        admin: string;
+        treasurer: string;
+        secretary: string
+    }
+    approval?: {
+        maker: string;
+        checker: string;
+        approver: string
+    }
+    created_by?: string;
+};
+
+export type SaccoTypes = {
+    _id?: string;
+    sacco_id?: string;
+    role_name?: string;
+    name: string;
+    group_id: string;
+    entranceFee: {
+        adults: string;
+        children: string;
+        teens: string;
+        friend: string;
+    };
+    shares:{
+        initialNumber: string;
+        nominalPrice: string;
+        maxInitial: string;
+    };
+    saving: {
+        minimumAmount: string;
+        lumpSum: string;
+    }
+    notificationStatus: string;
+    loanType: string;
+    priorityOfLoan: string;
+    traningProgram: string;
+    role: {
+        admin: string;
+        treasurer: string;
+        secretary: string
+    }
+    approval: {
+        maker: string;
+        checker: string;
+        approver: string
+    }
+    created_by: string;
+    approved: number
+};
+
+export type JoinSaccoTypes = {
+    _id?: string;
+    group_id: string;
+    role_name: string;
+    group_name: string;
+    group_type: string;
+    group_state: string;
+    group_avatar: string;
+    description: string;
+    tags: string;
+    created_by: string;
+    del_flag: number;
+    createdAt: Date;
+    updatedAt: Date;
+};
 
 export type CourseProgressTypes = {
     currentStep: number;

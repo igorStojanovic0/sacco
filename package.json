@@ -19,6 +19,7 @@
     "@hookform/resolvers": "^3.6.0",
     "@kontenbase/sdk": "^0.10.5",
     "@livekit/components-react": "^2.3.5",
+    "@mui/icons-material": "^5.16.4",
     "@mui/material": "^5.15.21",
     "@mui/system": "^5.15.20",
     "@prisma/client": "^5.16.1",
