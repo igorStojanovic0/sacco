@@ -33,7 +33,7 @@ interface Groups {
 
 const GroupSideMenuBar = ({ toggleSideBar, isVisible }: Props) => {
     const userId = localStorage.getItem('user')
-    const { joinedGroupList } = useGetjoinedGroupList(userId as string);
+    const { joinedGroupList } = useGetjoinedGroupList();
     console.log('joined group list ', joinedGroupList);
 
     const [groupList, setGroupList] = useState<JoinedGroupTypes[]>([]);
@@ -76,7 +76,7 @@ const GroupSideMenuBar = ({ toggleSideBar, isVisible }: Props) => {
                             </div>
 
                             <ul className="space-y-1 pt-4">
-                                {joinedGroupList?.map((group) => (
+                                {joinedGroupList?.map((group: JoinedGroupTypes) => (
                                     <li key={group?.group_id}>
                                         <Link href={`/Group/${group?.group_id}/${group?.role_name}`} className="group relative flex justify-center rounded px-2 py-1.5 text-slate-200 hover:bg-gray-50 hover:text-gray-700">
                                             <Image src={(group?.group_avatar === 'default' || !group?.group_avatar) ? '/assets/user.png' : `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/${group?.group_avatar}`} height={50} width={50} alt="group avatar" className="rounded-full" />
