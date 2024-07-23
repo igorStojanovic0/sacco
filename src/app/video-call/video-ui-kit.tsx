@@ -36,7 +36,7 @@ export default function VideoUIKit() {
         // }
 
         const username =
-        currentUser?.surName || currentUser?.email.split("@")[0]
+        currentUser?.surName
 
         const kitToken = ZegoUIKitPrebuilt.generateKitTokenForProduction(
           5,
