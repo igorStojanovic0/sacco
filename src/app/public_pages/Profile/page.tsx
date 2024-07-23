@@ -1,8 +1,6 @@
 "use client"
 import { useGetProfileData, useUpdateUserAccount } from "@/api/auth";
 import UserProfileForm from "@/components/forms/UserProfileForm";
-// import { Store } from "@/context/user";
-// import { useContext } from "react";
 
 const Profile = () => {
   // const userContext = useContext(Store);

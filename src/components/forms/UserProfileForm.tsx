@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 // import { Select, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
+import { User } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import Image from 'next/image';
@@ -94,7 +95,7 @@ const formSchema = z.object({
 type UserFormData = z.infer<typeof formSchema>;
 
 type Props = {
-    currentUser: UserFormData;
+    currentUser: User;
     onSave: (UserProfileData: UserFormData) => void;
     isLoading: boolean;
 };
@@ -141,8 +142,8 @@ const UserProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
     const [showBirthday, setShowBirthday] = useState<boolean>(false)
     const [avatarFile, setAvatarFile] = useState({ file: null, url: "" });
     const [IDPhoto, setIDPhoto] = useState({ file: null, url: "" });
-    const [twoFactorState, setTwofactorState] = useState<string>(currentUser?.twoFactorAuth)
-    const [nationalIDNum, setNationalIDNum] = useState<string>(currentUser?.nationalIDNumber)
+    const [twoFactorState, setTwofactorState] = useState<string | undefined>(currentUser?.twoFactorAuth)
+    const [nationalIDNum, setNationalIDNum] = useState<string | undefined>(currentUser?.nationalIDNumber)
 
     useEffect(() => {
         form.reset(currentUser);
