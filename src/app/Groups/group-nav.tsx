@@ -10,7 +10,6 @@ import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
 
 const GroupNav = () => {
-  const userId = localStorage.getItem('user')
   // const { joinedGroupList } = useGetjoinedGroupList(userId as string);
   const { currentUser } = useGetProfileData()
   const { groupNotificationFlag, sendMsgGroupId, groupList } = useMyContext()

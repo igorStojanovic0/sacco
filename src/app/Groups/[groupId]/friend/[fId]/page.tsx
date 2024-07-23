@@ -22,14 +22,18 @@ type Message = {
 
 
 const FriendPage = () => {
-  const group_id = localStorage.getItem('groupId')
-  const { groupChatMsg } = useGetGroupChatMsg(group_id as string)
+  const [groupId, setGroupId] = useState<string | null>(null);
+  const { groupChatMsg } = useGetGroupChatMsg(groupId as string)
   const { addGroupMsg, groupFriendRoomEnter, setMsgInputState, setMemberList } = useMyContext()
   const [addMsg, setaddMsg] = useState<Message[]>([])
 
   const [chatMsg, setChatMsg] = useState<Message[]>([])
   const params = useParams()
   const { groupUserList } = useGetGroupUserList(params?.groupId as string)
+
+  useEffect(() => {
+    setGroupId(localStorage.getItem('groupId'));
+  }, []);
 
   useEffect(() => {
     setaddMsg([...addMsg, addGroupMsg])
@@ -51,7 +55,7 @@ const FriendPage = () => {
 
   useEffect(() => {
     setMemberList(groupUserList)
-},[groupUserList])
+  }, [groupUserList])
 
   return (
 

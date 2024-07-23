@@ -11,9 +11,6 @@ import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 import toast from "react-hot-toast"
 import ReactPlayer from "react-player"
-// import { useMutation, useQuery } from "convex/react"
-// import { useConversationStore } from "@/store/chat-store"
-// import { api } from "@/convex/_generated/api"
 
 const MediaDropdown = () => {
   const imageInput = useRef<HTMLInputElement>(null)

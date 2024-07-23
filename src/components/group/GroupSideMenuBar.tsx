@@ -32,7 +32,6 @@ interface Groups {
 }
 
 const GroupSideMenuBar = ({ toggleSideBar, isVisible }: Props) => {
-    const userId = localStorage.getItem('user')
     const { joinedGroupList } = useGetjoinedGroupList();
     console.log('joined group list ', joinedGroupList);
 

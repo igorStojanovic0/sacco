@@ -60,7 +60,7 @@ type MyContextType = {
 const MyContext = createContext<MyContextType | undefined>(undefined);
 
 export const MyProvider = ({ children }: Props) => {
-    let userId = localStorage?.getItem('user')
+    const [userId, setUserId] = useState<string | null>(null);
     const [groupList, setGroupList] = useState<JoinedGroupTypes[] | undefined>([]);
     const [memberList, setMemberList] = useState<User[]>([]);
     const [sockets, setSocket] = useState<Socket>()
@@ -122,6 +122,9 @@ export const MyProvider = ({ children }: Props) => {
     const [saccoStep, setSaccoStep] = useState<number>(0);
     const [saccoCategory, setSaccoCategory] = useState<number>(1);
     
+    useEffect(() => {
+        setUserId(localStorage.getItem('user'))
+    },[])
     const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL as string);
     const connect = () => {
         setSocket(socket)

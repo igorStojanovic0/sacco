@@ -24,7 +24,7 @@ export default function GroupMainLayout({
     children: React.ReactNode;
 }>) {
 
-    let userId = localStorage.getItem('user')
+    
     const { groupList, selectedGroupId, setSelectedGroupId, setLoggedUser, addFriend, newFriend, groupEnter, msgInputState, setMsgInputState, memberList, sendMsgRoomId, setSendMsgRoomId, sendMsgGroupId } = useMyContext()
     const { currentUser } = useGetProfileData()
 
@@ -41,6 +41,14 @@ export default function GroupMainLayout({
 
     const [friendList, setfriendList] = useState<FriendTypes[]>([])
     const [selectedFriend, setSelectedFriend] = useState<FriendTypes | null>()
+    const [userId, setUserId] = useState<string | null>()
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            let user_id = window.localStorage.getItem('user')
+            setUserId(user_id)
+        }
+      }, []);
 
     useEffect(() => {
         setfriendList(groupFriendList)
@@ -78,15 +86,6 @@ export default function GroupMainLayout({
     if (!group) {
         return null;
     }
-
-    // if (params?.fId) {
-    //     setChannelTitle('')
-    // } else if (params?.wId) {
-    //     setSelectedFriend(null)
-
-    // } else if (params?.cId) {
-    //     setSelectedFriend(null)
-    // }
 
     if (memberList) {
         const user = memberList?.filter((member) => member?.user_id === userId)[0]

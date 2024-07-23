@@ -1,33 +1,26 @@
-import { Button } from "@/components/ui/button"
-import { Laugh, Mic, Send, Video } from "lucide-react"
-import { useState } from "react"
-// import { useMutation, useQuery } from "convex/react"
-// import { api } from "@/convex/_generated/api"
-// import { useConversationStore } from "@/store/chat-store"
-import toast from "react-hot-toast"
-// import useComponentVisible from "@/hooks/useComponentVisible"
 import MediaDropdown from "@/components/group/components/media-dropdown"
+import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { useMyContext } from "@/context/MyContext"
 import EmojiPicker, { Theme } from "emoji-picker-react"
+import { Laugh, Mic, Send, Video } from "lucide-react"
 import Link from "next/link"
-import { useParams, useRouter } from "next/navigation"
+import { useParams } from "next/navigation"
+import { useEffect, useState } from "react"
+import toast from "react-hot-toast"
 import { trimMessage } from "../lib/strings"
 
 const MessageInput = () => {
+    const [userId, setUserId] = useState<string | null>(null);
     const params = useParams()
-    const userId = localStorage.getItem('user')
     const { msgEmit, msgInputState } = useMyContext()
     const [msgText, setMsgText] = useState("")
-    //   const { selectedConversation } = useConversationStore()
-    //   const sendTextMsg = useMutation(api.messages.sendTextMessage)
-    //   const me = useQuery(api.users.getMe)
-    //   const { ref, isComponentVisible, setIsComponentVisible } =
-    //     useComponentVisible(false)
 
     let [isComponentVisible, setIsComponentVisible] = useState<boolean>(false)
 
-    const router = useRouter()
+    useEffect(() => {
+        setUserId(localStorage.getItem('user'))
+    },[])
 
     const handleSendTextMsg = async (e: React.FormEvent) => {
         e.preventDefault()

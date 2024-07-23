@@ -1,5 +1,6 @@
 import { CreateUserTypes, OPTTypes, SignInTypes, UpdateUserTypes, User } from "@/types";
 import Cookies from "js-cookie";
+import { useEffect } from "react";
 import { useMutation, useQuery } from 'react-query';
 import { toast } from 'sonner';
 
@@ -230,7 +231,12 @@ export const useGetProfileData = () => {
 
     const { data: currentUser, isLoading } = useQuery("userInfo", () => getUserProfileRequest());
 
-    window.localStorage.setItem('user', currentUser?._id as string)
+    
+    useEffect(() => {
+        if (typeof window !== 'undefined' && currentUser?._id) {
+            window.localStorage.setItem('user', currentUser?._id as string)
+        }
+    }, [currentUser])
 
     return { currentUser, isLoading }
 };

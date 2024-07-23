@@ -80,7 +80,7 @@ const SignInForm = ({ onSignIn, isLoading }: Props) => {
           {isLoading ? <LoadingButton /> : <Button type='submit' className='bg-[#1170b2] hover:bg-gray-600 text-white w-[380px]'>Submit</Button>}
           <div className='mt-7'>
             {`Don't have an account? `}
-            <Link href={'/auth/SignUp'} onClick={() => window.localStorage.setItem('menu', 'SignUp')} className='text-blue-600'>Create account</Link>
+            <Link href={'/auth/SignUp'} className='text-blue-600'>Create account</Link>
           </div>
         </div>
         <div className='mt-5'>

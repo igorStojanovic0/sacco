@@ -69,7 +69,7 @@ const PrimaryMenu = () => {
                         </PopoverContent>
                     </Popover>
                     :
-                    <Link href={'/auth/SignIn'} onClick={() => window.localStorage.setItem('menu', 'SignIn')} className="hidden md:block text-blue-950 px-4 py-2 rounded-xl bg-yellow-500 hover:bg-yellow-400 font-bold">Sign In</Link>
+                    <Link href={'/auth/SignIn'} className="hidden md:block text-blue-950 px-4 py-2 rounded-xl bg-yellow-500 hover:bg-yellow-400 font-bold">Sign In</Link>
                 }
             </div>
         </>

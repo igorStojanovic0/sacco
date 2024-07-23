@@ -16,10 +16,8 @@ export default function HomeLayout({
   const [userInfo, setUserInfo] = useState<User>();
   const { currentUser } = useGetProfileData();
 
-  const localMenu = window.localStorage.getItem('menu')
 
   const [isClosed, setIsClosed] = useState(false);
-  const [menu, setMenu] = useState<string>(localMenu as string)
   useEffect(() => {
     if (currentUser) {
       setUserInfo(currentUser)

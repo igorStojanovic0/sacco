@@ -12,29 +12,10 @@ export default function VideoUIKit() {
   const roomID = '123'
   // const { user } = useClerk()
   const {currentUser} = useGetProfileData()
-  const user = localStorage.getItem('user')
 
   let myMeeting = (element: HTMLDivElement) => {
     const initMeeting = async () => {
       try {
-        // const res = await fetch(`/api/zegocloud?userID=${user}`)
-
-        // // Check if the response is okay and parse as JSON
-        // if (!res.ok) {
-        //   throw new Error(`Server error: ${res.statusText}`)
-        // }
-
-        // const data = await res.json().catch(() => {
-        //   throw new Error("Invalid JSON response")
-        // })
-
-        // const { token, appID } = data
-
-        // Check if token and appID are present
-        // if (!token || !appID) {
-        //   throw new Error("Incomplete response: Missing token or appID")
-        // }
-
         const username =
         currentUser?.surName
 

@@ -1,4 +1,7 @@
 "use client"
+import { useGetGroupUserList } from "@/api/auth"
+import { useAddGroupChannel } from "@/api/channel"
+import * as Icons from '@/components/group/icons'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   Dialog,
@@ -7,28 +10,19 @@ import {
   DialogTitle,
   DialogTrigger
 } from "@/components/ui/dialog"
-import Image from "next/image"
-import { useEffect, useRef, useState } from "react"
-import { Button } from "../ui/button"
-import { Input } from "../ui/input"
-// import { users } from "@/dummy-data/db"
-// import { Id } from "@/convex/_generated/dataModel"
-// import { useMutation, useQuery } from "convex/react"
-// import { api } from "@/convex/_generated/api"
-import { DialogClose } from "@radix-ui/react-dialog"
-// import toast from "react-hot-toast"
-// import { useConversationStore } from "@/store/chat-store"
-import { useGetGroupUserList } from "@/api/auth"
-import { useAddGroupChannel } from "@/api/channel"
-import * as Icons from '@/components/group/icons'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { User } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { DialogClose } from "@radix-ui/react-dialog"
 import axios from "axios"
 import { ImageIcon } from "lucide-react"
+import Image from "next/image"
 import { useParams } from "next/navigation"
+import { useEffect, useRef, useState } from "react"
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { Button } from "../ui/button"
+import { Input } from "../ui/input"
 
 const formSchema = z.object({
   name: z.string().optional(),
