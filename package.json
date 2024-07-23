@@ -69,6 +69,8 @@
     "next-auth": "^4.24.7",
     "next-themes": "^0.3.0",
     "prisma": "^5.16.1",
+    "pusher": "^5.2.0",
+    "pusher-js": "^8.4.0-rc2",
     "query-string": "^9.0.0",
     "react": "^18",
     "react-chartjs-2": "^5.2.0",
