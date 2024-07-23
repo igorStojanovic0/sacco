@@ -13,8 +13,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
 const GroupCreateDialog = () => {
   const { currentUser } = useGetProfileData();
   const { addGroup, isLoading } = useAddGroup();
-  const { groupList } = useGetGroupList();
-  const { joinedGroupList } = useGetjoinedGroupList(currentUser?._id as string)
+  const { allGroupList } = useGetGroupList();
+  const { joinedGroupList } = useGetjoinedGroupList()
   const { joinGroup } = useJoinGroup();
   console.log('-------------joinedGroupList', joinedGroupList);
   
@@ -51,7 +51,7 @@ const GroupCreateDialog = () => {
             <TabsContent value="join" className="space-y-4">
               <JoinGroupForm
                 onSave={joinGroup}
-                groupList={groupList}
+                groupList={allGroupList}
                 joinedGroupList={joinedGroupList}
                 // isLoading={isLoading}
               />
