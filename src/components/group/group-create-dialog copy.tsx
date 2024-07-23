@@ -4,7 +4,7 @@ import { useRef } from "react"
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog"
 // import { Input } from "./ui/input"
 import { useGetProfileData } from "@/api/auth"
-import { useAddGroup, useGetGroupList, useGetjoinedGroupList, useJoinGroup } from "@/api/group"
+import { useAddGroup, useGetjoinedGroupList, useJoinGroup } from "@/api/group"
 import CreateGroupForm from "../forms/CreateGroupForm"
 import { Card } from "../ui/card"
 
@@ -15,8 +15,8 @@ type Props = {
 const GroupCreateDialog = ({isVisible}: Props) => {
   const { currentUser } = useGetProfileData();
   const { addGroup, isLoading } = useAddGroup();
-  const { groupList } = useGetGroupList();
-  const { joinedGroupList } = useGetjoinedGroupList(currentUser?._id as string)
+  // const { groupList } = useGetGroupList();
+  const { joinedGroupList } = useGetjoinedGroupList()
   const { joinGroup } = useJoinGroup();
   console.log('-------------joinedGroupList', joinedGroupList);
 

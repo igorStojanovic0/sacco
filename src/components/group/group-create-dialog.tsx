@@ -288,7 +288,7 @@ const UserListDialog = ({ currentUser }: Props) => {
                       <div className="w-full ">
                         <div className="flex items-center justify-between">
                           <p className="text-md font-medium">
-                            {user.surName || user.email.split("@")[0]}
+                            {user.surName}
                           </p>
                         </div>
                       </div>
