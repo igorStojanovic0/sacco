@@ -88,6 +88,7 @@
     "react-scroll": "^1.9.0",
     "react-slick": "^0.27.13",
     "react-tailwindcss-select": "^1.8.5",
+    "sharp": "^0.33.4",
     "slick-carousel": "^1.8.1",
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5",
