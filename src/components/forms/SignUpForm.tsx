@@ -49,9 +49,9 @@ const SignUpForm = ({ onSignUp, isLoading }: Props) => {
             control={form.control}
             name='surName'
             render={({ field }) => (
-              <FormItem className='w-full'>
+              <FormItem className='w-full text-black'>
                 <FormControl>
-                  <Input placeholder="First name" {...field} className="h-14 peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500" />
+                  <Input placeholder="First name" {...field} className="h-14 peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 " />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -64,9 +64,9 @@ const SignUpForm = ({ onSignUp, isLoading }: Props) => {
             control={form.control}
             name='givenName'
             render={({ field }) => (
-              <FormItem className='w-full'>
+              <FormItem className='w-full text-black'>
                 <FormControl>
-                  <Input placeholder="Last name" {...field} className="h-14 peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500" />
+                  <Input placeholder="Last name" {...field} className="h-14 peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 " />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -81,9 +81,9 @@ const SignUpForm = ({ onSignUp, isLoading }: Props) => {
             control={form.control}
             name='email'
             render={({ field }) => (
-              <FormItem>
+              <FormItem className='text-black'>
                 <FormControl>
-                  <Input placeholder="Email address" {...field} className="h-14 peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500" />
+                  <Input placeholder="Email address" {...field} className="h-14 peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 " />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -109,9 +109,9 @@ const SignUpForm = ({ onSignUp, isLoading }: Props) => {
             control={form.control}
             name='password'
             render={({ field }) => (
-              <FormItem>
+              <FormItem className='text-black'>
                 <FormControl>
-                  <Input type={passwordVisible ? 'text' : 'password'} placeholder="Password" {...field} className="h-14 peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500" />
+                  <Input type={passwordVisible ? 'text' : 'password'} placeholder="Password" {...field} className="h-14 peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 " />
                 </FormControl>
                 <FormMessage />
               </FormItem>

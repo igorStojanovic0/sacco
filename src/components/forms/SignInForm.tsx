@@ -42,10 +42,10 @@ const SignInForm = ({ onSignIn, isLoading }: Props) => {
             control={form.control}
             name='email'
             render={({ field }) => (
-              <FormItem className='bg-transparent'>
+              <FormItem className='bg-transparent text-black'>
                 {/* <FormLabel>Email</FormLabel> */}
                 <FormControl>
-                  <Input placeholder="Email address" {...field} className="h-14 peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500" />
+                  <Input placeholder="Email address" {...field} className="h-14 peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -59,10 +59,10 @@ const SignInForm = ({ onSignIn, isLoading }: Props) => {
             control={form.control}
             name='password'
             render={({ field }) => (
-              <FormItem className='bg-transparent'>
+              <FormItem className='bg-transparent text-black'>
                 {/* <FormLabel>Password</FormLabel> */}
                 <FormControl>
-                  <Input type={passwordVisible ? 'text' : 'password'} placeholder="Password" {...field} className="h-14 peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500" />
+                  <Input type={passwordVisible ? 'text' : 'password'} placeholder="Password" {...field} className="h-14 peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
