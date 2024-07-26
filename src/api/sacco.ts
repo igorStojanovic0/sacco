@@ -1,4 +1,4 @@
-import { CreateSaccoTypes, JoinSaccoTypes } from "@/types";
+import { CreateSaccoTypes, JoinGroupFormData } from "@/types";
 import Cookies from "js-cookie";
 import { useMutation, useQuery } from 'react-query';
 import { toast } from 'sonner';
@@ -100,7 +100,7 @@ export const useGetjoinedSaccoList = () => {
 
 export const useJoinSacco = () => {
     const accessToken = Cookies.get('access-token');
-    const JoinSaccoRequest = async (joinData: JoinSaccoTypes) => {
+    const JoinSaccoRequest = async (joinData: JoinGroupFormData) => {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/sacco/join`, {
             method: 'POST',
             headers: {

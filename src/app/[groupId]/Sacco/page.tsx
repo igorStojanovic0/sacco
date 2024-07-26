@@ -13,7 +13,7 @@ export default function SaccoHome() {
 
   const params = useParams()
   
-  const { groupList, saccoCategory } = useMyContext()
+  const { saccoCategory } = useMyContext()
   const { allSaccoList } = useGetSaccoList()
   const { joinedSaccoList } = useGetjoinedSaccoList()
   const { joinSacco } = useJoinSacco();
@@ -203,7 +203,7 @@ export default function SaccoHome() {
                   return (
                     <motion.div variants={item} key={course._id} >
                       <SaccoCard course={course}
-                        // onSave={joinGroup}
+                        onSave={joinSacco}
                         joinedSaccoList={joinedSaccoList}
                       />
                     </motion.div>
@@ -282,7 +282,7 @@ export default function SaccoHome() {
                   return (
                     <motion.div variants={item} key={course._id} >
                       <SaccoCard course={course}
-                        // onSave={joinGroup}
+                        onSave={joinSacco}
                         joinedSaccoList={joinedSaccoList}
                       />
                     </motion.div>

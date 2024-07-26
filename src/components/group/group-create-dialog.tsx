@@ -177,8 +177,6 @@ const UserListDialog = ({ currentUser }: Props) => {
       group_avatar: groupAvatar === "" ? "default" : groupAvatar
     }
     
-    console.log("groupData", newData);
-
     await addGroup(newData)
   }
 

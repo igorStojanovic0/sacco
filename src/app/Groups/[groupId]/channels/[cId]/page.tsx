@@ -23,14 +23,14 @@ type Message = {
 
 
 const ChannelPage = () => {
-  const [groupId, setGroupId] = useState<string | null>(null);
+  const [groupId, setGroupId] = useState<string | null>();
+  const params = useParams()
 
-  const { groupChatMsg } = useGetGroupChatMsg(groupId as string)
+  const { groupChatMsg } = useGetGroupChatMsg(params?.groupId as string)
   const { addGroupMsg, groupChannelRoomEnter, setMsgInputState, setMemberList } = useMyContext()
   const [addMsg, setaddMsg] = useState<Message[]>([])
 
   const [chatMsg, setChatMsg] = useState<Message[]>([])
-  const params = useParams()
 
   const { groupUserList } = useGetGroupUserList(params?.groupId as string)
 

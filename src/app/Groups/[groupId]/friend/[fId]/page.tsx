@@ -22,13 +22,14 @@ type Message = {
 
 
 const FriendPage = () => {
-  const [groupId, setGroupId] = useState<string | null>(null);
-  const { groupChatMsg } = useGetGroupChatMsg(groupId as string)
+  const [groupId, setGroupId] = useState<string | null>();
+  const params = useParams()
+
+  const { groupChatMsg } = useGetGroupChatMsg(params?.groupId as string)
   const { addGroupMsg, groupFriendRoomEnter, setMsgInputState, setMemberList } = useMyContext()
   const [addMsg, setaddMsg] = useState<Message[]>([])
 
   const [chatMsg, setChatMsg] = useState<Message[]>([])
-  const params = useParams()
   const { groupUserList } = useGetGroupUserList(params?.groupId as string)
 
   useEffect(() => {

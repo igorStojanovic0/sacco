@@ -175,8 +175,6 @@ const GroupMemberListDialog = ({ currentUser, groupUserList, selectedUser, setSe
       group_avatar: groupAvatar === "" ? "default" : groupAvatar
     }
     
-    console.log("groupData", newData);
-
     await addGroup(newData)
   }
 

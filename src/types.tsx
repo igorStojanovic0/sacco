@@ -350,6 +350,12 @@ export type JoinSaccoTypes = {
     updatedAt: Date;
 };
 
+export type JoinGroupFormData = {
+    user_id?: string;
+    group_id?: string;
+    sacco_id?: string;
+}
+
 export type CourseProgressTypes = {
     currentStep: number;
     completed: number;

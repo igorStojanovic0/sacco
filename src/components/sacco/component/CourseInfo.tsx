@@ -9,16 +9,15 @@ import CourseCategory from './CourseCategory';
 type Props = {
   course: SaccoTypes
   joinedSaccoList?: SaccoTypes[]
+  isApproved: number | undefined
 }
 
 
-function CourseInfo({ course, joinedSaccoList }: Props) {
+function CourseInfo({ course, joinedSaccoList, isApproved }: Props) {
   if (!course) {
     return null;
   }
 
-  const isApproved = joinedSaccoList?.filter((sacco: SaccoTypes) => sacco?._id === course?._id)[0]
-  console.log("isApproved----------]", isApproved);
   
 
   return (
@@ -27,7 +26,7 @@ function CourseInfo({ course, joinedSaccoList }: Props) {
         <CourseCategory slug={course.loanType} />
 
         {/* {course?.del_flag && ( */}
-        {isApproved?.approved === 1 ? (
+        {isApproved === 1 ? (
           <LucideCheckCircle2 color='white' fill='green' />
         ) : (<></>)}
 

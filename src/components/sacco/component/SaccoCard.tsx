@@ -1,24 +1,25 @@
 "use client"
 import { useGetProfileData } from "@/api/auth";
-import { SaccoTypes } from '@/types';
+import { JoinGroupFormData, SaccoTypes } from '@/types';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import { Apple, GroupIcon } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
-import { z } from 'zod';
 import CourseInfo from './CourseInfo';
 
-const formSchema = z.object({
-    user_id: z.string().optional(),
-    group_id: z.string().optional(),
-});
+// const formSchema = z.object({
+//     user_id: z.string().optional(),
+//     group_id: z.string().optional(),
+//     sacco_id: z.string().optional(),
+// });
 
-export type JoinGroupFormData = z.infer<typeof formSchema>;
+// export type JoinGroupFormData = z.infer<typeof formSchema>;
 
 type Props = {
-    onSave?: (joinData: any) => void;
+    onSave: (joinData: JoinGroupFormData) => void;
     course: SaccoTypes
     joinedSaccoList?: SaccoTypes[]
 }
@@ -28,17 +29,17 @@ function SaccoCard({ course, onSave, joinedSaccoList }: Props) {
     const { currentUser } = useGetProfileData();
     const [saccoDetailFlag, setSaccoDetailFlag] = useState<boolean>(false)
 
-    const router = useRouter()
+    const isApproved = joinedSaccoList?.filter((sacco: SaccoTypes) => sacco?._id === course?._id)[0]?.approved
+    const params = useParams()
 
     const onSubmit = () => {
         var newData = {
-            group_id: course?._id,
+            group_id: params?.groupId as string,
+            sacco_id: course?._id,
             user_id: currentUser?._id
         }
-        console.log("currentUser", newData);
 
-        // onSave(newData)
-
+        onSave(newData)
     }
 
     return (
@@ -51,13 +52,13 @@ function SaccoCard({ course, onSave, joinedSaccoList }: Props) {
                 </div>
                 <div className="h-1/2 bg-[#eae9f4] overflow-hidden">
                     <CardContent className="flex flex-col flex-auto">
-                        <CourseInfo course={course} joinedSaccoList={joinedSaccoList} />
+                        <CourseInfo course={course} joinedSaccoList={joinedSaccoList} isApproved={isApproved} />
                     </CardContent>
                 </div>
             </Card>
             {saccoDetailFlag && (
                 <div className='absolute w-1/3 top-0 right-0 bg-[#e1e4f5] h-[calc(100vh-50px)] text-black'>
-                    <div className='justify-between flex p-5'>
+                    <div className='justify-between flex p-5 bg-gray-500'>
                         <span className='text-3xl'>Profile</span>
                         <button onClick={() => setSaccoDetailFlag(false)}><AiFillCloseCircle fontSize={30} /></button>
                     </div>
@@ -70,20 +71,28 @@ function SaccoCard({ course, onSave, joinedSaccoList }: Props) {
                             <div className='text-xl'>teens: {course?.entranceFee.teens}</div>
                             <div className='text-xl'>friend: {course?.entranceFee.friend}</div>
                         </div>
-                        <div className='text-2xl'>Entrance Fee:</div>
+                        <div className='text-2xl'>Share Management:</div>
                         <div className="ml-10">
-                            <div className='text-xl'>adults: {course?.entranceFee.adults}</div>
-                            <div className='text-xl'>children: {course?.entranceFee.children}</div>
-                            <div className='text-xl'>teens: {course?.entranceFee.teens}</div>
-                            <div className='text-xl'>friend: {course?.entranceFee.friend}</div>
+                            <div className='text-xl'>Initial Issued Shares: {course?.shares.initialNumber}</div>
+                            <div className='text-xl'>Nominal Price per Share: {course?.shares.nominalPrice}</div>
+                            <div className='text-xl'>Maximum Purchase Limit: {course?.shares.maxInitial}</div>
                         </div>
-                        <div className='text-2xl'>Entrance Fee:</div>
+                        <div className='text-2xl'>Savings Requirements:</div>
                         <div className="ml-10">
-                            <div className='text-xl'>adults: {course?.entranceFee.adults}</div>
-                            <div className='text-xl'>children: {course?.entranceFee.children}</div>
-                            <div className='text-xl'>teens: {course?.entranceFee.teens}</div>
-                            <div className='text-xl'>friend: {course?.entranceFee.friend}</div>
+                            <div className='text-xl'>Monthly Minimum Savings: {course?.saving.minimumAmount}</div>
+                            <div className='text-xl'>Lump-Sum Payment Option: {course?.saving.lumpSum}</div>
                         </div>
+                    </div>
+                    <div className="flex justify-center space-x-5">
+                        {isApproved === 1 ? (
+                            <button
+                            className='border-green-100 bg-green-200 border-2 px-20 py-2 rounded-lg  flex items-center text-center gap-2' disabled><GroupIcon /> Joined</button>
+                        ) : (
+                            <button
+                            className='border-green-100 bg-green-200 border-2 px-20 py-2 rounded-lg hover:bg-green-600 flex items-center text-center gap-2 hover:text-white' onClick={onSubmit}><Apple /> Apply</button>
+                        )}
+                        <button
+                            className='border-green-100 bg-green-200 border-2 px-20 py-2 rounded-lg hover:bg-green-600 flex items-center text-center gap-2 hover:text-white'> Cancel</button>
                     </div>
                 </div>
             )}

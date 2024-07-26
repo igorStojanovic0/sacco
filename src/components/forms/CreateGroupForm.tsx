@@ -57,8 +57,6 @@ const CreateGroupForm = ({ onSave, isLoading }: Props) => {
             ...GroupData,
             group_type: group_type?.value
         }
-        console.log("groupData", newData);
-        
         onSave(newData)
     }
     return (
