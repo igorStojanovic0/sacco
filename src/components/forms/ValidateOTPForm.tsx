@@ -44,7 +44,7 @@ export function ValidateOTPForm({ onValidateOTP, isLoading }: Props) {
             render={({ field }) => (
               <FormItem className='w-full'>
                 <FormControl>
-                  <Input placeholder="Security Code" {...field} className="h-14 peer block w-full rounded-md border border-gray-200 py-[12px] pl-10 text-sm outline-2 placeholder:text-gray-500" />
+                  <Input placeholder="Security Code" {...field} className="h-14 peer block w-full rounded-md border border-gray-200 py-[12px] pl-10 text-sm outline-2 placeholder:text-gray-500 text-black" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
