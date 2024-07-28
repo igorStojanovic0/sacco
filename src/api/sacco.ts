@@ -138,3 +138,30 @@ export const useJoinSacco = () => {
         isSuccess
     }
 };
+
+
+export const useGetSaccoUserList = (saccoId: string) => {
+    const accessToken = Cookies.get('access-token');
+    
+    const getSaccoUserList = async (saccoId: string) => {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/sacco/findBySaccoId?saccoId=${saccoId}`, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+            }
+        });
+
+        const responseData = await response.json();
+        
+        if (!response.ok) {
+            throw new Error(responseData.message);
+        }
+
+        const { saccoUserList} = responseData
+
+        return saccoUserList;
+    };
+
+    const { data: saccoUserList, isLoading } = useQuery("saccoUserList", () => getSaccoUserList(saccoId));
+
+    return { saccoUserList, isLoading }
+};

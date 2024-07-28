@@ -68,6 +68,8 @@ export type User = {
     user_id?: string
     role_name?:string
     group_id?: string
+    sacco_id?: string
+    approved?: number
 };
 
 export type CreateUserTypes = {

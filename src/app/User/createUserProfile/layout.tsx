@@ -85,12 +85,7 @@ export default function CreateUserProfileLayout({
             </div>
           </div>
         </div>
-        <div className="flex w-full fixed">
-          <div className="w-5/6">
-            {children}
-          </div>
-          <img src={'/assets/gallery-6.jpg'} alt="create profile" className="w-1/6" />
-        </div>
+        {children}
       </div>
     </div>
   )

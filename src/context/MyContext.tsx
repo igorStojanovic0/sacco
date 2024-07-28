@@ -53,6 +53,8 @@ type MyContextType = {
     setSaccoStep: (value: number) => void;
     saccoCategory: number;
     setSaccoCategory: (value: number) => void;
+    saccoTopBar: string;
+    setSaccoTopBar: (value: string) => void;
 
 };
 
@@ -121,6 +123,8 @@ export const MyProvider = ({ children }: Props) => {
 
     const [saccoStep, setSaccoStep] = useState<number>(0);
     const [saccoCategory, setSaccoCategory] = useState<number>(1);
+
+    const [saccoTopBar, setSaccoTopBar] = useState('')
     
     useEffect(() => {
         setUserId(localStorage.getItem('user'))
@@ -245,7 +249,9 @@ export const MyProvider = ({ children }: Props) => {
                 saccoStep,
                 setSaccoStep,
                 saccoCategory,
-                setSaccoCategory
+                setSaccoCategory,
+                saccoTopBar,
+                setSaccoTopBar
             }}
         >
             {children}

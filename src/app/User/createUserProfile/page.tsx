@@ -38,7 +38,7 @@ const CreateUserProfile = () => {
 
     return (
         <>
-            <div className="">
+            <div className="relative">
                 <Card className="fixed h-[100vh] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 bg-custom text-white">
                     <div className="mb-2 p-4 flex justify-between">
                         <Typography variant="h5" color="blue-gray">
@@ -122,7 +122,7 @@ const CreateUserProfile = () => {
             </div>
             <div className="ml-80">
                 {currentUser && (
-                    <section className="flex flex-col gap-4 fixed">
+                    // <section className="flex flex-col gap-4 fixed">
                         <div className="flex flex-col gap-4 p-5 md:p-0">
                             <UserCreateProfileForm
                                 currentUser={currentUser as any}
@@ -136,7 +136,7 @@ const CreateUserProfile = () => {
                                 setProgress={setProgress}
                             />
                         </div>
-                    </section>
+                    // </section>
                 )}
             </div>
         </>

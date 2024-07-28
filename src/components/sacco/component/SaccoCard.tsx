@@ -5,7 +5,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { Apple, GroupIcon } from "lucide-react";
 import Image from "next/image";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 import CourseInfo from './CourseInfo';
@@ -31,7 +31,7 @@ function SaccoCard({ course, onSave, joinedSaccoList }: Props) {
 
     const isApproved = joinedSaccoList?.filter((sacco: SaccoTypes) => sacco?._id === course?._id)[0]?.approved
     const params = useParams()
-
+    const router = useRouter()
     const onSubmit = () => {
         var newData = {
             group_id: params?.groupId as string,
@@ -85,14 +85,24 @@ function SaccoCard({ course, onSave, joinedSaccoList }: Props) {
                     </div>
                     <div className="flex justify-center space-x-5">
                         {isApproved === 1 ? (
+                            <>
                             <button
-                            className='border-green-100 bg-green-200 border-2 px-20 py-2 rounded-lg  flex items-center text-center gap-2' disabled><GroupIcon /> Joined</button>
+                                className='border-green-100 bg-green-200 border-2 px-20 py-2 rounded-lg  flex items-center text-center gap-2' disabled><GroupIcon /> Joined</button>
+                            <button
+                                    className='border-green-100 bg-green-200 border-2 px-20 py-2 rounded-lg hover:bg-green-600 flex items-center text-center gap-2 hover:text-white' onClick={() => {
+                                        router.push(`/${params?.groupId}/Sacco/${course?._id}`)
+                                        setSaccoDetailFlag(false)}
+                                        }> Open</button>    
+                            </>
                         ) : (
-                            <button
-                            className='border-green-100 bg-green-200 border-2 px-20 py-2 rounded-lg hover:bg-green-600 flex items-center text-center gap-2 hover:text-white' onClick={onSubmit}><Apple /> Apply</button>
+                            <>
+                                <button
+                                    className='border-green-100 bg-green-200 border-2 px-20 py-2 rounded-lg hover:bg-green-600 flex items-center text-center gap-2 hover:text-white' onClick={onSubmit}><Apple /> Apply</button>
+                                <button
+                                    className='border-green-100 bg-green-200 border-2 px-20 py-2 rounded-lg hover:bg-green-600 flex items-center text-center gap-2 hover:text-white' onClick={() => setSaccoDetailFlag(false)}> Cancel</button>
+                            </>
                         )}
-                        <button
-                            className='border-green-100 bg-green-200 border-2 px-20 py-2 rounded-lg hover:bg-green-600 flex items-center text-center gap-2 hover:text-white'> Cancel</button>
+
                     </div>
                 </div>
             )}
