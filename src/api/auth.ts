@@ -43,7 +43,6 @@ export const useSignUp = () => {
 
 export const useSignIn = () => {
     const SignInRequest = async (user: SignInTypes) => {
-        console.log('userSignIn', JSON.stringify(user));
         
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/signin`, {
             method: 'POST',
@@ -63,8 +62,6 @@ export const useSignIn = () => {
             secure: environment === "production" ? true : false,
             expires: 1/24
         });
-        
-
         
     };
 
@@ -191,6 +188,8 @@ export const useRegenerateOTP = () => {
 
         const responseData = await response.json();
 
+
+        
         if (!response.ok) {
             throw new Error(responseData.message);
         }
