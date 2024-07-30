@@ -35,6 +35,8 @@ export default function Home() {
       } else {
         router.push('/User/createUserProfile')
       }
+    } else {
+      return;
     }
   }, [router, userInfo])
 

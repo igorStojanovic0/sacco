@@ -1,12 +1,15 @@
 "use client"
 import { useSignIn } from "@/api/auth";
 import SignInForm from "@/components/forms/SignInForm";
+import { useRouter } from "next/navigation";
 
 const SignIn = () => {
+  const router = useRouter()
   const { signIn, isLoading, isSuccess,  } = useSignIn(); 
 
   if (isSuccess) {
-    window.location.replace('/User/createUserProfile');
+    // window.location.replace('/User/createUserProfile');
+    router.push('/User/createUserProfile')
   }
 
   return (
