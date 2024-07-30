@@ -211,6 +211,8 @@ export const useRegenerateOTP = () => {
 
 export const useGetProfileData = () => {
     const accessToken = Cookies.get('access-token');
+    console.log("access-token ", accessToken);
+    
     const getUserProfileRequest = async (): Promise<User> => {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/user`, {
             headers: {
