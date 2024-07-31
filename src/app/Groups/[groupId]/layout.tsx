@@ -412,9 +412,7 @@ export default function GroupMainLayout({
                     {selectedFriend && (
                         <>
                             <Avatar className="overflow-visible !w-7 !h-7">
-                                {/* {friend?.is_active && ( */}
                                 <div className="absolute top-5 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-[#d4d6f3]" />
-                                {/* )} */}
                                 <AvatarImage
                                     src={(selectedFriend?.photograph === 'default' || !selectedFriend?.photograph) ? '/assets/user.png' : `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/${selectedFriend?.photograph}`}
                                     className="rounded-full object-cover"

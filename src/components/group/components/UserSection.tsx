@@ -4,8 +4,8 @@ import { useGetProfileData } from "@/api/auth";
 import { Icon } from "@/components/group/components";
 import { useData, useLayers, useSettings, useShowSettings, useTooltip } from "@/components/group/lib/store";
 import { translateCap } from "@/components/group/lib/strings";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import styles from "@/styles/UserSection.module.css";
-import Image from "next/image";
 import { ReactElement, useRef } from "react";
 
 export const UserSection = (): ReactElement => {
@@ -73,13 +73,22 @@ export const UserSection = (): ReactElement => {
                     }}
                 >
                     <div>
-                        <Image
+                        <Avatar className="overflow-visible">
+                            <AvatarImage
+                                src={(currentUser?.photograph === 'default' || !currentUser?.photograph) ? '/assets/user.png' : `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/${currentUser?.photograph}`}
+                                className="rounded-full object-cover"
+                            />
+                            <AvatarFallback>
+                                <div className="animate-pulse bg-gray-tertiary w-full h-full rounded-full"></div>
+                            </AvatarFallback>
+                        </Avatar>
+                        {/* <Image
                             className='mr-4 mt-0.5 h-10 w-10 rounded-full'
                             src={(currentUser?.photograph === 'default' || !currentUser?.photograph) ? '/assets/user.png' : `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/${currentUser?.photograph}`}
                             width={32}
                             height={32}
                             alt=''
-                        />
+                        /> */}
                     </div>
 
                     <div className={`${styles.contentWrapper} text-black`}>
