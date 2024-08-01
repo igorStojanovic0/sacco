@@ -140,9 +140,9 @@ const Header = () => {
             >
               Contact Us
             </LinkScroll>
-            {/* {userInfo?._id && (
+            {userInfo?._id && (
               <Link href={'/Groups'}>Group</Link>
-            )} */}
+            )}
           </ul>
 
           <div className="col-start-10 col-end-12 font-medium flex justify-end items-center">
