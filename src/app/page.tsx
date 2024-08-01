@@ -27,20 +27,6 @@ export default function Home() {
     }
   }, [currentUser])
 
-  // useEffect(() => {
-    // if (userInfo) {
-      // router.push('/')
-      // if (userInfo?.is_profileCompleted) {
-      //   router.push('/')
-
-      // } else {
-      //   router.push('/User/createUserProfile')
-      // }
-  //   } else {
-  //     return;
-  //   }
-  // }, [router, userInfo])
-
   useEffect(() => {
     console.log(accessToken)
     if (!accessToken) {

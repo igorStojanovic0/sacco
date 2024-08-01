@@ -82,37 +82,17 @@ const WorkStep = () => {
 
   return (
     <div
-      className="max-w-screen-2xl mt-8 mb-6 sm:mt-14 sm:mb-14 items-center justify-center gap-10"
-
+      className="max-w-screen-2xl mt-8 mb-6 sm:mt-14 sm:mb-14 items-center justify-center gap-10 xl:gap-0 mx-auto"
       id="work"
     >
-      {/* <div className="grid grid-flow-row sm:grid-flow-col grid-cols-2 sm:grid-cols-2 gap-8 p  y-8 my-12"> */}
-      {/* <ScrollAnimationWrapper className="flex w-full justify-end">
-          <motion.div className="h-full w-full p-4" variants={scrollAnimation}>
-            <Image
-              src="/assets/Picture3.png"
-              alt="VPN Illustrasi"
-              layout="responsive"
-              quality={100}
-              height={414}
-              width={508}
-              className=" rounded-xl"
-            />
-          </motion.div>
-        </ScrollAnimationWrapper> */}
-      <ScrollAnimationWrapper className="justify-center items-center text-center ml-96 mb-20">
+      <ScrollAnimationWrapper className="justify-center items-center text-center mb-20">
         <h3 className="text-3xl lg:text-4xl justify-center font-bold leading-relaxed text-[rgb(50,86,166)]">
           How it works
         </h3>
       </ScrollAnimationWrapper>
 
       <ScrollAnimationWrapper>
-        <motion.div className="grid grid-flow-row sm:grid-flow-col grid-cols-2 flex-col items-end justify-center ml-auto space-x-10 w-full lg:w-9/12" variants={scrollAnimation}>
-
-          {/* <p className="my-2 text-[#4F5665]">
-              You can explore the features that we provide with fun and have their
-              own functions each feature.
-            </p> */}
+        <motion.div className="grid grid-flow-row sm:grid-cols-1 md:grid-cols-2 flex-col items-center justify-center md:space-x-10 lg:w-10/12 mx-auto sm:w-11/12" variants={scrollAnimation}>
           <motion.div
             whileHover={{
               scale: 1.1,
@@ -120,18 +100,18 @@ const WorkStep = () => {
                 duration: .2
               }
             }}
-            className="h-[420px] text-[#4F5665] list-inside mt-5 border-green-500 border-2 p-10 rounded-xl justify-center items-center">
-            <h3 className="text-2xl m-auto font-bold leading-relaxed text-[rgb(50,86,166)]">
+            className="h-[430px] text-[#4F5665] list-inside mt-5 border-green-500 border-2 p-10 rounded-xl">
+            <h3 className="text-lg font-bold leading-relaxed text-[rgb(50,86,166)] lg:text-lg xl:text-2xl sm:text-lg">
               Step1: Create or Join a Savings Group
             </h3>
             {number.map((num, index) => (
               <motion.li
-                className="relative ml-5 circle-check custom-list flex items-center justify-center"
+                className="relative ml-5 circle-check custom-list flex lg:text-sm xl:text-base sm:text-sm text-sm"
                 style={{ opacity: 1 }}
                 key={num}
               >
-                <div className=" flex flex-col gap-2">
-                  <span className=" font-bold">
+                <div className="flex flex-col">
+                  <span className="font-bold">
                     {step1[num]}
                   </span>
                   <span>
@@ -149,13 +129,13 @@ const WorkStep = () => {
                 duration: .2
               }
             }}
-            className="h-[420px] text-[#4F5665] list-inside mt-5 border-green-500 border-2 p-10 rounded-xl justify-center items-center">
-            <h3 className="text-2xl m-auto font-bold leading-relaxed text-[rgb(50,86,166)]">
+            className="h-[430px] text-[#4F5665] list-inside mt-5 border-green-500 border-2 p-10 rounded-xl">
+            <h3 className="text-lg m-auto font-bold leading-relaxed text-[rgb(50,86,166)] lg:text-lg xl:text-2xl sm:text-lg">
             Step 2: Set Collective and Individual Goals
             </h3>
             {number2.map((num, index) => (
               <motion.li
-                className="relative ml-5 circle-check custom-list flex items-center justify-center"
+                className="relative ml-5 circle-check custom-list flex lg:text-sm xl:text-base sm:text-sm text-sm"
                 style={{ opacity: 1 }}
                 key={num}
               >
@@ -174,12 +154,7 @@ const WorkStep = () => {
         </motion.div>
       </ScrollAnimationWrapper>
       <ScrollAnimationWrapper>
-        <motion.div className="grid grid-flow-row sm:grid-flow-col grid-cols-2 flex-col items-end justify-center ml-auto space-x-10 w-full lg:w-9/12" variants={scrollAnimation}>
-
-          {/* <p className="my-2 text-[#4F5665]">
-              You can explore the features that we provide with fun and have their
-              own functions each feature.
-            </p> */}
+        <motion.div className="grid grid-flow-row sm:grid-cols-1 md:grid-cols-2 flex-col items-center justify-center md:space-x-10  lg:w-10/12 mx-auto sm:w-11/12" variants={scrollAnimation}>
           <motion.div
             whileHover={{
               scale: 1.1,
@@ -187,13 +162,13 @@ const WorkStep = () => {
                 duration: .2
               }
             }}
-            className="h-[420px] text-[#4F5665] list-inside mt-5 border-green-500 border-2 p-10 rounded-xl justify-center items-center">
-            <h3 className="text-2xl m-auto font-bold leading-relaxed text-[rgb(50,86,166)]">
+            className="h-[430px] text-[#4F5665] list-inside mt-5 border-green-500 border-2 p-10 rounded-xl">
+            <h3 className="text-lg m-auto font-bold leading-relaxed text-[rgb(50,86,166)] lg:text-lg xl:text-2xl sm:text-lg">
             Step 3: Make Regular Contributions
             </h3>
             {number1.map((num, index) => (
               <motion.li
-                className="relative ml-5 circle-check custom-list flex items-center justify-center"
+                className="relative ml-5 circle-check custom-list flex lg:text-sm xl:text-base sm:text-sm text-sm"
                 style={{ opacity: 1 }}
                 key={num}
               >
@@ -216,13 +191,13 @@ const WorkStep = () => {
                 duration: .2
               }
             }}
-            className="h-[420px] text-[#4F5665] list-inside mt-5 border-green-500 border-2 p-10 rounded-xl justify-center items-center">
-            <h3 className="text-2xl m-auto font-bold leading-relaxed text-[rgb(50,86,166)]">
+            className="h-[430px] text-[#4F5665] list-inside mt-5 border-green-500 border-2 p-10 rounded-xl">
+            <h3 className="text-lg m-auto font-bold leading-relaxed text-[rgb(50,86,166)] lg:text-lg xl:text-2xl sm:text-lg">
             Step 4: Participate in Savings Challenges
             </h3>
             {number3.map((num, index) => (
               <motion.li
-                className="relative ml-5 circle-check custom-list flex items-center justify-center"
+                className="relative ml-5 circle-check custom-list flex lg:text-sm xl:text-base sm:text-sm text-sm"
                 style={{ opacity: 1 }}
                 key={num}
               >
@@ -241,7 +216,7 @@ const WorkStep = () => {
         </motion.div>
       </ScrollAnimationWrapper>
       <ScrollAnimationWrapper>
-        <motion.div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 flex-col items-end justify-center ml-auto space-x-10 w-full lg:w-9/12" variants={scrollAnimation}>
+        <motion.div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 flex-col items-center justify-center space-x-10 lg:w-10/12 mx-auto sm:w-11/12" variants={scrollAnimation}>
 
           {/* <p className="my-2 text-[#4F5665]">
               You can explore the features that we provide with fun and have their
@@ -255,12 +230,12 @@ const WorkStep = () => {
               }
             }}
             className=" text-[#4F5665] list-inside mt-5 border-green-500 border-2 p-10 rounded-xl justify-start items-start">
-            <h3 className="text-2xl m-auto font-bold leading-relaxed text-[rgb(50,86,166)]">
+            <h3 className="text-lg m-auto font-bold leading-relaxed text-[rgb(50,86,166)] lg:text-lg xl:text-2xl sm:text-lg">
             Step 5: Track Progress and Celebrate Milestones
             </h3>
             {number.map((num, index) => (
               <motion.li
-                className="relative ml-5 circle-check custom-list flex items-center justify-start"
+                className="relative ml-5 circle-check custom-list flex items-center justify-start sm:text-base text-sm"
                 style={{ opacity: 1 }}
                 key={num}
               >
