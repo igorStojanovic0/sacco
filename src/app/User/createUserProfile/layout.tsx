@@ -35,7 +35,7 @@ export default function CreateUserProfileLayout({
   useEffect(() => {
     if (userInfo) {
       if (userInfo?.is_profileCompleted) {
-        router.push('/')
+        return;
 
       } else {
         router.push('/User/createUserProfile')

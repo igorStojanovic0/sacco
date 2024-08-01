@@ -33,7 +33,8 @@ export default function GroupsLayout({
   useEffect(() => {
     if (userInfo) {
       if (userInfo?.is_profileCompleted) {
-        router.push(`/${params?.groupId}/Sacco`)
+        // router.push(`/${params?.groupId}/Sacco`)
+        return;
 
       } else {
         router.push('/User/createUserProfile')
