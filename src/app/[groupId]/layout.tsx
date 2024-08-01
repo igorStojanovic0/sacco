@@ -1,11 +1,13 @@
 "use client"
+import { useGetProfileData } from '@/api/auth';
 import { useGetjoinedGroupList } from '@/api/group';
 import { useMyContext } from '@/context/MyContext';
 import '@/styles/globals.css';
 import '@/styles/styles.css';
+import { User } from '@/types';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import GroupNav from './group-nav';
 
 export default function GroupsLayout({
@@ -18,11 +20,31 @@ export default function GroupsLayout({
   const access_token = Cookies.get('access-token')
   const { joinedGroupList } = useGetjoinedGroupList();
   const { userEnter } = useMyContext()
+  const { currentUser } = useGetProfileData();
+  const [userInfo, setUserInfo] = useState<User>();
+
+  useEffect(() => {
+    if (currentUser) {
+      setUserInfo(currentUser)
+    }
+  }, [currentUser])
+
+  useEffect(() => {
+    if (userInfo) {
+      if (userInfo?.is_profileCompleted) {
+        router.push('/')
+
+      } else {
+        router.push('/User/createUserProfile')
+      }
+    }
+  }, [router, userInfo])
+
 
   useEffect(() => {
     setGroupList(joinedGroupList)
   }, [joinedGroupList])
-  
+
   useEffect(() => {
     if (!access_token) {
       router.push('/auth/SignIn')
@@ -31,12 +53,12 @@ export default function GroupsLayout({
 
   useEffect(() => {
     userEnter('C2S_USER_ENTER', `allGroups`)
-  },[])
-  
+  }, [])
+
   return (
-        <div className='flex h-screen text-gray-100'>
-          <GroupNav />
-          {children}
-        </div>
+    <div className='flex h-screen text-gray-100'>
+      <GroupNav />
+      {children}
+    </div>
   );
 }

@@ -1,7 +1,6 @@
 "use client"
 import { useGetProfileData } from "@/api/auth"
 
-import Image from "next/image"
 import Link from "next/link"
 import GroupCreateDialog from "./group-create-dialog"
 
@@ -16,7 +15,7 @@ const GroupTopBar = () => {
 
       {/* <div>
         </div> */}
-      <Link href={'/'}><Image src="/logo.png" width={100} height={100} alt="logo" /></Link>
+      <Link href={'/'}><img src="/logo.png" width={100} height={100} alt="logo" /></Link>
       <div>
         <GroupCreateDialog currentUser={currentUser} />
         <></>

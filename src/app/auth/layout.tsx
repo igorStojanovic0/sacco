@@ -2,7 +2,6 @@
 import { useGetProfileData } from "@/api/auth";
 import { User } from '@/types';
 import { HelpCircleIcon } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -34,7 +33,7 @@ export default function HomeLayout({
       <div className="relative z-10 items-center text-center">
         <div className="sticky top-0 z-50 items-center">
           <div className="py-2 md:py-4 md:container mx-auto flex justify-between items-center">
-            <Link href={'/'} className=""><Image src={'/logo.png'} width={150} height={45} alt="logo" quality={100} /></Link>
+            <Link href={'/'} className=""><img src={'/logo.png'} width={150} height={45} alt="logo" quality={100} /></Link>
             <div className="space-x-5 flex">
               {/* {menu === "SignIn" && (
                 <Link href={'/auth/SignUp'} onClick={() => setMenu('SignUp')} className="text-white">SignUp</Link>

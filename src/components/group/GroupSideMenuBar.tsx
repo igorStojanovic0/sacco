@@ -3,7 +3,6 @@ import { useGetjoinedGroupList } from "@/api/group"
 import { JoinedGroupTypes } from "@/types"
 import Cookies from "js-cookie"
 import { LogOut, Menu } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 import React, { useEffect, useState } from "react"
 import GeneralIcon from "../icons/GeneralIcon"
@@ -78,7 +77,7 @@ const GroupSideMenuBar = ({ toggleSideBar, isVisible }: Props) => {
                                 {joinedGroupList?.map((group: JoinedGroupTypes) => (
                                     <li key={group?.group_id}>
                                         <Link href={`/Group/${group?.group_id}/${group?.role_name}`} className="group relative flex justify-center rounded px-2 py-1.5 text-slate-200 hover:bg-gray-50 hover:text-gray-700">
-                                            <Image src={(group?.group_avatar === 'default' || !group?.group_avatar) ? '/assets/user.png' : `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/${group?.group_avatar}`} height={50} width={50} alt="group avatar" className="rounded-full" />
+                                            <img src={(group?.group_avatar === 'default' || !group?.group_avatar) ? '/assets/user.png' : `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/${group?.group_avatar}`} height={50} width={50} alt="group avatar" className="rounded-full" />
                                             <span className="invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white group-hover:visible">
                                                 {group?.group_name}
                                             </span>

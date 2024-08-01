@@ -23,7 +23,7 @@ export default function SaccoLayout({
             <div className='flex w-60 flex-col bg-[#d4d6f3] justify-between'>
                 <div>
                     <div className='flex h-12 items-center px-3 font-title text-white shadow-md'>
-                        <Link href='/'><Image src={`/logo.png`} width={150} height={20} alt="logo" /></Link>
+                        <Link href='/'><img src={`/logo.png`} width={150} height={20} alt="logo" /></Link>
                     </div>
                     <Link href={`/Groups/${group?.group_id}/welcome/1`}>
                         <div className='flex text-gray-700 gap-3 text-2xl font-bold justify-start items-center text-center bg-blue-300 p-3'>

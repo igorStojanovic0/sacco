@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { ArrowLeft, FlagIcon } from 'lucide-react';
-import Image from 'next/image';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Select from 'react-tailwindcss-select';
@@ -380,10 +379,10 @@ const UserCreateProfileForm = ({ onSave, isLoading, currentUser, step, setStep, 
 
                                                         {avatarFile.file ?
                                                             <span className='w-full h-full flex overflow-y-hidden'>
-                                                                <Image className='w-full shadow-lg visible-image' width={100} height={100} src={avatarFile.url} alt="Photograph" />
+                                                                <img className='w-full shadow-lg visible-image' width={100} height={100} src={avatarFile.url} alt="Photograph" />
                                                             </span>
                                                             : <span className='w-full h-full flex overflow-y-hidden'>
-                                                                <Image className='w-full shadow-lg visible-image' width={100} height={100} src={(currentUser?.photograph === 'default' || !currentUser?.photograph) ? '/assets/user.png' : `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/${field?.value}`} alt="Photograph" />
+                                                                <img className='w-full shadow-lg visible-image' width={100} height={100} src={(currentUser?.photograph === 'default' || !currentUser?.photograph) ? '/assets/user.png' : `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/${field?.value}`} alt="Photograph" />
                                                             </span>
                                                         }
                                                     </div>
@@ -578,10 +577,10 @@ const UserCreateProfileForm = ({ onSave, isLoading, currentUser, step, setStep, 
 
                                                         {IDPhoto.file ?
                                                             <span className='w-full h-full flex overflow-y-hidden'>
-                                                                <Image className='w-full shadow-lg visible-image' width={100} height={100} src={IDPhoto.url} alt="ID photo" />
+                                                                <img className='w-full shadow-lg visible-image' width={100} height={100} src={IDPhoto.url} alt="ID photo" />
                                                             </span>
                                                             : <span className='w-full h-full flex overflow-y-hidden'>
-                                                                <Image className='w-full shadow-lg visible-image' width={100} height={100} src={(currentUser?.nationalIDPhoto === 'default' || !currentUser?.nationalIDPhoto) ? '/assets/user.png' : `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/${field?.value}`} alt="ID photo" />
+                                                                <img className='w-full shadow-lg visible-image' width={100} height={100} src={(currentUser?.nationalIDPhoto === 'default' || !currentUser?.nationalIDPhoto) ? '/assets/user.png' : `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/${field?.value}`} alt="ID photo" />
                                                             </span>
                                                         }
                                                     </div>

@@ -4,7 +4,6 @@ import { useGetProfileData } from '@/api/auth';
 import GroupCreateDialog from '@/components/group/groupCreateDialog';
 import { Eye, Verified } from '@/components/group/icons';
 import { useMyContext } from '@/context/MyContext';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
@@ -39,7 +38,7 @@ const GroupNav = () => {
           {(sendMsgGroupId === group?.group_id) && groupNotificationFlag && (
             <div className="absolute top-0 right-0 w-4 h-4 bg-red-500 rounded-full border-2 border-[#d4d6f3]" />
           )}
-          <Image width={48} height={48} src={(group?.group_avatar === 'default' || !group?.group_avatar) ? '/servers/mirage.png' : `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/${group.group_avatar}`} alt='group' />
+          <img width={48} height={48} src={(group?.group_avatar === 'default' || !group?.group_avatar) ? '/servers/mirage.png' : `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/${group.group_avatar}`} alt='group' />
         </NavLink>
       ))}
 

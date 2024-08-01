@@ -4,7 +4,6 @@ import { useGetGroupUserList } from '@/api/auth';
 import { useGetGroupChatMsg } from '@/api/groupChat';
 import { useMyContext } from '@/context/MyContext';
 import moment from 'moment';
-import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 // export type Message = ['messages'][number];
@@ -87,7 +86,7 @@ export default FriendPage
 function MessageWithUser({ message }: { message: Message }) {
   return (
     <div className='mt-[17px] flex py-0.5 pl-4 pr-16 leading-[22px] hover:bg-gray-950/[.07]'>
-      <Image
+      <img
         className='mr-4 mt-0.5 h-10 w-10 rounded-full'
         src={(message?.photograph === 'default' || !message?.photograph) ? '/assets/user.png' : `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/${message?.photograph}`}
         width={40}

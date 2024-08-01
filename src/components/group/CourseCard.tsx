@@ -7,7 +7,6 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { css, styled } from '@mui/system';
 import clsx from 'clsx';
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import * as React from 'react';
 import { useState } from "react";
@@ -236,7 +235,7 @@ function CourseCard({ course, onSave, joinedGroupList }: Props) {
                     className="flex flex-col h-80 shadow-md shadow-gray-300 !rounded-2xl !text-gray-800 !bg-[#eae9f4] cursor-pointer border-2 border-gray-400"
                 >
                     <div className="h-1/2 overflow-hidden">
-                        <Image src={(course?.group_avatar === 'default' || !course?.group_avatar) ? '/servers/mirage.png' : `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/${course?.group_avatar}`} alt={`${course?.name}`} width={500} height={250} />
+                        <img src={(course?.group_avatar === 'default' || !course?.group_avatar) ? '/servers/mirage.png' : `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/${course?.group_avatar}`} alt={`${course?.name}`} width={500} height={250} />
                     </div>
                     <div className="h-1/2 bg-[#eae9f4] overflow-hidden">
                         <CardContent className="flex flex-col flex-auto">

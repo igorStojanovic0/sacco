@@ -8,8 +8,8 @@ const SignIn = () => {
   const { signIn, isLoading, isSuccess,  } = useSignIn(); 
 
   if (isSuccess) {
-    window.location.replace('/User/createUserProfile');
-    // router.push('/')
+    // window.location.replace('/User/createUserProfile');
+    window.location.replace('/')
   }
 
   return (
