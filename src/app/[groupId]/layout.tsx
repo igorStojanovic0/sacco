@@ -6,7 +6,7 @@ import '@/styles/globals.css';
 import '@/styles/styles.css';
 import { User } from '@/types';
 import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import GroupNav from './group-nav';
 
@@ -22,6 +22,7 @@ export default function GroupsLayout({
   const { userEnter } = useMyContext()
   const { currentUser } = useGetProfileData();
   const [userInfo, setUserInfo] = useState<User>();
+  const params = useParams()
 
   useEffect(() => {
     if (currentUser) {
@@ -32,7 +33,7 @@ export default function GroupsLayout({
   useEffect(() => {
     if (userInfo) {
       if (userInfo?.is_profileCompleted) {
-        router.push('/')
+        router.push(`/${params?.groupId}/Sacco`)
 
       } else {
         router.push('/User/createUserProfile')
