@@ -217,11 +217,6 @@ const WorkStep = () => {
       </ScrollAnimationWrapper>
       <ScrollAnimationWrapper>
         <motion.div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 flex-col items-center justify-center space-x-10 lg:w-10/12 mx-auto sm:w-11/12" variants={scrollAnimation}>
-
-          {/* <p className="my-2 text-[#4F5665]">
-              You can explore the features that we provide with fun and have their
-              own functions each feature.
-            </p> */}
           <motion.div
             whileHover={{
               scale: 1.1,
@@ -254,7 +249,6 @@ const WorkStep = () => {
         </motion.div>
       </ScrollAnimationWrapper>
     </div>
-    // </div>
   );
 };
 
