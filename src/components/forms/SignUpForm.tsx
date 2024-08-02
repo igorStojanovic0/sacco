@@ -125,7 +125,7 @@ const SignUpForm = ({ onSignUp, isLoading }: Props) => {
           <label htmlFor='viewpassword' className='text-sm'> View password</label>
         </div>
 
-        {isLoading ? <LoadingButton /> : <Button type='submit' className='bg-[#1170b2] hover:bg-gray-600 text-white w-[380px]'>Submit</Button>}
+        {isLoading ? <LoadingButton /> : <Button type='submit' className='bg-[#1170b2] hover:bg-gray-600 text-white  md:w-[calc(20vw)] sm:w-[calc(100vw)]'>Submit</Button>}
 
       </form>
       <div className='mt-5 text-white'>
