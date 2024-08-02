@@ -96,7 +96,7 @@ function MessageWithUser({ message }: { message: Message }) {
       <div>
         <p className='flex items-baseline'>
           <span className='mr-2 text-[15px] font-medium text-black'>
-            {message.surName}
+            {message?.surName}
           </span>
           <span className='text-xs font-semibold text-[#414d70]'>
             {/* {message?.created} */}
@@ -112,7 +112,7 @@ function MessageWithUser({ message }: { message: Message }) {
 function Message({ message }: { message: Message }) {
   return (
     <div className='py-0.5 pl-4 pr-16 leading-[22px] hover:bg-gray-950/[.07]'>
-      <p className='pl-14 text-black'>{message.content}</p>
+      <p className='pl-14 text-black'>{message?.content}</p>
     </div>
   );
 }
