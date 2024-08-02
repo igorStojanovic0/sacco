@@ -62,7 +62,7 @@ const FriendPage = () => {
     <>
       <div className='flex-1 overflow-y-scroll' style={{ scrollbarWidth: 'none' }}>
         {chatMsg?.map((message: Message, i: number) => (
-          <div key={message._id}>
+          <div key={message?._id}>
             {/* {i === 0 || message.user !== channel.messages[i - 1].user ? ( */}
             <MessageWithUser message={message} />
             {/* ) : (
@@ -72,7 +72,7 @@ const FriendPage = () => {
         ))}
 
         {(addMsg.length > 0) && addMsg?.map((message: Message, i: number) => (
-          <div key={message._id}>
+          <div key={message?._id}>
             <MessageWithUser message={message} />
           </div>
         ))}
