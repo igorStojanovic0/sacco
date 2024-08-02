@@ -44,7 +44,7 @@ const FriendPage = () => {
   }, [params?.fId])
 
   useEffect(() => {
-    const newMsg = groupChatMsg?.filter((msg: Message) => msg.roomId === `${params?.fId}`)
+    const newMsg = groupChatMsg?.filter((msg: Message) => msg?.roomId === `${params?.fId}`)
     setChatMsg(newMsg)
   }, [groupChatMsg])
 
